@@ -4,9 +4,17 @@
     <link>http://example.org/</link>
     <description>一个SE学生的个人博客。</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>a587212@126.com (amcones)</managingEditor>
-      <webMaster>a587212@126.com (amcones)</webMaster><lastBuildDate>Wed, 02 Nov 2022 11:13:51 &#43;0800</lastBuildDate>
+      <webMaster>a587212@126.com (amcones)</webMaster><lastBuildDate>Wed, 02 Nov 2022 18:08:38 &#43;0800</lastBuildDate>
       <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>这是一篇测试博客</title>
+  <link>http://example.org/%E8%BF%99%E6%98%AF%E4%B8%80%E7%AF%87%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A2/</link>
+  <pubDate>Wed, 02 Nov 2022 18:08:38 &#43;0800</pubDate>
+  <author>amcones</author>
+  <guid>http://example.org/%E8%BF%99%E6%98%AF%E4%B8%80%E7%AF%87%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A2/</guid>
+  <description><![CDATA[111]]></description>
+</item>
+<item>
   <title>First_post</title>
   <link>http://example.org/first_post/</link>
   <pubDate>Wed, 02 Nov 2022 11:13:51 &#43;0800</pubDate>
