@@ -2,11 +2,14 @@
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"
   ><url>
+      <loc>https://amcones.github.io/categories/</loc><lastmod>2022-11-03T09:10:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://amcones.github.io/tags/default/</loc><lastmod>2022-11-03T09:10:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://amcones.github.io/categories/default/</loc><lastmod>2022-11-03T09:10:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://amcones.github.io/hugo-%E7%AB%99%E7%82%B9%E5%BC%80%E7%AB%99%E8%AE%B0%E5%BD%95/</loc><lastmod>2022-11-03T09:10:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://amcones.github.io/posts/</loc><lastmod>2022-11-03T09:10:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://amcones.github.io/tags/</loc><lastmod>2022-11-03T09:10:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+      <loc>https://amcones.github.io/</loc><lastmod>2022-11-03T09:10:18&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>https://amcones.github.io/friends/</loc><lastmod>2022-11-03T01:23:03&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>https://amcones.github.io/categories/</loc><lastmod>2022-11-02T11:13:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>https://amcones.github.io/tags/draft/</loc><lastmod>2022-11-02T11:13:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
       <loc>https://amcones.github.io/categories/draft/</loc><lastmod>2022-11-02T11:13:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>https://amcones.github.io/first_post/</loc><lastmod>2022-11-02T11:13:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>https://amcones.github.io/posts/</loc><lastmod>2022-11-02T11:13:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>https://amcones.github.io/tags/</loc><lastmod>2022-11-02T11:13:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-      <loc>https://amcones.github.io/</loc><lastmod>2022-11-02T11:13:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url></urlset>
+      <loc>https://amcones.github.io/first_post/</loc><lastmod>2022-11-02T11:13:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url></urlset>

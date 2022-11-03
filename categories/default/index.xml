@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>default - 分类 - 尤利の博客</title>
+    <link>https://amcones.github.io/categories/default/</link>
+    <description>default - 分类 - 尤利の博客</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>a587212@126.com (amcones)</managingEditor>
+      <webMaster>a587212@126.com (amcones)</webMaster><lastBuildDate>Thu, 03 Nov 2022 09:10:18 &#43;0800</lastBuildDate><atom:link href="https://amcones.github.io/categories/default/" rel="self" type="application/rss+xml" /><item>
+  <title>hugo 站点开站记录</title>
+  <link>https://amcones.github.io/hugo-%E7%AB%99%E7%82%B9%E5%BC%80%E7%AB%99%E8%AE%B0%E5%BD%95/</link>
+  <pubDate>Thu, 03 Nov 2022 09:10:18 &#43;0800</pubDate>
+  <author>amcones</author>
+  <guid>https://amcones.github.io/hugo-%E7%AB%99%E7%82%B9%E5%BC%80%E7%AB%99%E8%AE%B0%E5%BD%95/</guid>
+  <description><![CDATA[]]></description>
+</item>
+</channel>
+</rss>
