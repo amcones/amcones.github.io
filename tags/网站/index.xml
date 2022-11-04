@@ -1,18 +1,10 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
-    <title>所有文章 - 尤利の博客</title>
-    <link>https://amcones.github.io/posts/</link>
-    <description>所有文章 | 尤利の博客</description>
+    <title>网站 - 标签 - 尤利の博客</title>
+    <link>https://amcones.github.io/tags/%E7%BD%91%E7%AB%99/</link>
+    <description>网站 - 标签 - 尤利の博客</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>a587212@126.com (amcones)</managingEditor>
-      <webMaster>a587212@126.com (amcones)</webMaster><lastBuildDate>Fri, 04 Nov 2022 20:57:06 &#43;0800</lastBuildDate><atom:link href="https://amcones.github.io/posts/" rel="self" type="application/rss+xml" /><item>
-  <title>FFT与NTT</title>
-  <link>https://amcones.github.io/fft%E4%B8%8Entt/</link>
-  <pubDate>Fri, 04 Nov 2022 20:57:06 &#43;0800</pubDate>
-  <author>amcones</author>
-  <guid>https://amcones.github.io/fft%E4%B8%8Entt/</guid>
-  <description><![CDATA[个人对于FFT/NTT的一些记录]]></description>
-</item>
-<item>
+      <webMaster>a587212@126.com (amcones)</webMaster><lastBuildDate>Thu, 03 Nov 2022 11:06:07 &#43;0800</lastBuildDate><atom:link href="https://amcones.github.io/tags/%E7%BD%91%E7%AB%99/" rel="self" type="application/rss+xml" /><item>
   <title>主题功能测试</title>
   <link>https://amcones.github.io/%E4%B8%BB%E9%A2%98%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/</link>
   <pubDate>Thu, 03 Nov 2022 11:06:07 &#43;0800</pubDate>

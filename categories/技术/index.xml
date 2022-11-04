@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>技术 - 分类 - 尤利の博客</title>
+    <link>https://amcones.github.io/categories/%E6%8A%80%E6%9C%AF/</link>
+    <description>技术 - 分类 - 尤利の博客</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>a587212@126.com (amcones)</managingEditor>
+      <webMaster>a587212@126.com (amcones)</webMaster><lastBuildDate>Fri, 04 Nov 2022 20:57:06 &#43;0800</lastBuildDate><atom:link href="https://amcones.github.io/categories/%E6%8A%80%E6%9C%AF/" rel="self" type="application/rss+xml" /><item>
+  <title>FFT与NTT</title>
+  <link>https://amcones.github.io/fft%E4%B8%8Entt/</link>
+  <pubDate>Fri, 04 Nov 2022 20:57:06 &#43;0800</pubDate>
+  <author>amcones</author>
+  <guid>https://amcones.github.io/fft%E4%B8%8Entt/</guid>
+  <description><![CDATA[个人对于FFT/NTT的一些记录]]></description>
+</item>
+</channel>
+</rss>
