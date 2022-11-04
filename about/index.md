@@ -1,11 +1,13 @@
 # 关于我
 
 
+{{< figure src="/images/about_uli.jpeg" >}}
+
+## 关于我
+
 {{< style "text-align:center;font-size:20px;" >}}
 理性·内省·进步
 {{< /style >}}
-
-## 关于我
 
 我是[uli]^([ˈjuli])，一名大三SE专业学生。从初中起就对编程感兴趣，并自学了C语言，之后在各领域都有所涉猎。
 
