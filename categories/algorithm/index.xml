@@ -1,10 +1,10 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
-    <title>Algorithm - 标签 - 尤利の博客</title>
-    <link>https://amcones.github.io/tags/algorithm/</link>
-    <description>Algorithm - 标签 - 尤利の博客</description>
+    <title>Algorithm - 分类 - 尤利の博客</title>
+    <link>https://amcones.github.io/categories/algorithm/</link>
+    <description>Algorithm - 分类 - 尤利の博客</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>a587212@126.com (amcones)</managingEditor>
-      <webMaster>a587212@126.com (amcones)</webMaster><lastBuildDate>Sat, 05 Nov 2022 01:19:27 &#43;0800</lastBuildDate><atom:link href="https://amcones.github.io/tags/algorithm/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>a587212@126.com (amcones)</webMaster><lastBuildDate>Sat, 05 Nov 2022 01:19:27 &#43;0800</lastBuildDate><atom:link href="https://amcones.github.io/categories/algorithm/" rel="self" type="application/rss+xml" /><item>
   <title>线段树及其扩展</title>
   <link>https://amcones.github.io/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%8F%8A%E5%85%B6%E6%89%A9%E5%B1%95/</link>
   <pubDate>Sat, 05 Nov 2022 01:19:27 &#43;0800</pubDate>
