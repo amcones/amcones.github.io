@@ -111,7 +111,7 @@ $$\ce{Hg^2+ ->[I-] HgI2 ->[I-] [Hg^{II}I4]^2-}$$
 
 ### 1 style
 
-{{< style "text-align:right; strong{color:#00b1ff;}" >}}
+{{< style "text-align:right;" >}}
 This is a **right-aligned** paragraph.
 {{< /style >}}
 
