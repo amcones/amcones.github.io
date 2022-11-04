@@ -26,15 +26,15 @@ $$
 
 假设$n$个单位根，幅角都为$\frac{1}{n}\times 360^\circ$。用$\omega^i_n$表示$n$次单位根中幅角为$\frac{1}{n}\times 360^\circ$的单位根，可以得到以下性质。
 $$
-\begin{aligned}
-\omega^k_n&=\omega_n^{k \bmod n} \\
-\omega^{2k}_{2n}&=\omega^k_n \\
-\omega^j_n\times\omega^k_n&=\omega^{j+k}_n \\
-(\omega^j_n)^k&=\omega^{jk}_n \\
-(\omega^k_n)^{-1}&=\omega^{-k}_n=\omega^{n-k}_n \\
-\omega^{\frac{n}{2}}_n&=-1 \\
-\omega^{\frac{n}{2}+k}_n&=\omega^k_n\times \omega^{\frac{n}{2}}_n=-\omega^k_n \\
-\end{aligned}
+\begin{align*}
+\omega^k_n&=\omega_n^{k \bmod n} \\\
+\omega^{2k}_{2n}&=\omega^k_n \\\
+\omega^j_n\times\omega^k_n&=\omega^{j+k}_n \\\
+(\omega^j_n)^k&=\omega^{jk}_n \\\
+(\omega^k_n)^{-1}&=\omega^{-k}_n=\omega^{n-k}_n \\\
+\omega^{\frac{n}{2}}_n&=-1 \\\
+\omega^{\frac{n}{2}+k}_n&=\omega^k_n\times \omega^{\frac{n}{2}}_n=-\omega^k_n 
+\end{align*}
 $$
 每个单独看都很简单，跟离散一样，放在一起就头疼了。还好只要知道怎么用这些性质推FFT就行了。
 
