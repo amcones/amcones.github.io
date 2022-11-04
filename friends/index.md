@@ -8,8 +8,8 @@
 
 ```yaml
 - nickname: amcones
-  avatar: https://amcones.github.io/images/uli.jpeg
-  url: https://amcones.github.io
+  avatar: https://amcones.cn/images/uli.jpeg
+  url: https://amcones.cn
   description: 盛夏日落迟 灯火未夜匆匆明
 ```
 
