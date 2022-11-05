@@ -4,7 +4,15 @@
     <link>https://amcones.cn/posts/</link>
     <description>所有文章 | 尤利の博客</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>a587212@126.com (amcones)</managingEditor>
-      <webMaster>a587212@126.com (amcones)</webMaster><lastBuildDate>Sat, 05 Nov 2022 20:05:40 &#43;0800</lastBuildDate><atom:link href="https://amcones.cn/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>a587212@126.com (amcones)</webMaster><lastBuildDate>Sat, 05 Nov 2022 20:10:52 &#43;0800</lastBuildDate><atom:link href="https://amcones.cn/posts/" rel="self" type="application/rss+xml" /><item>
+  <title>对于近况的一些总结（1）</title>
+  <link>https://amcones.cn/%E5%AF%B9%E4%BA%8E%E8%BF%91%E5%86%B5%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%931/</link>
+  <pubDate>Sat, 05 Nov 2022 20:10:52 &#43;0800</pubDate>
+  <author>amcones</author>
+  <guid>https://amcones.cn/%E5%AF%B9%E4%BA%8E%E8%BF%91%E5%86%B5%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%931/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>LCA算法总结</title>
   <link>https://amcones.cn/lca%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/</link>
   <pubDate>Sat, 05 Nov 2022 20:05:40 &#43;0800</pubDate>
