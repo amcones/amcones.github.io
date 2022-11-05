@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>frp - 标签 - 尤利の博客</title>
+    <link>https://amcones.github.io/tags/frp/</link>
+    <description>frp - 标签 - 尤利の博客</description>
+    <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>a587212@126.com (amcones)</managingEditor>
+      <webMaster>a587212@126.com (amcones)</webMaster><lastBuildDate>Fri, 04 Nov 2022 21:56:26 &#43;0800</lastBuildDate><atom:link href="https://amcones.github.io/tags/frp/" rel="self" type="application/rss+xml" /><item>
+  <title>使用frp搭建个人办公网络</title>
+  <link>https://amcones.github.io/%E4%BD%BF%E7%94%A8frp%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8A%9E%E5%85%AC%E7%BD%91%E7%BB%9C/</link>
+  <pubDate>Fri, 04 Nov 2022 21:56:26 &#43;0800</pubDate>
+  <author>amcones</author>
+  <guid>https://amcones.github.io/%E4%BD%BF%E7%94%A8frp%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8A%9E%E5%85%AC%E7%BD%91%E7%BB%9C/</guid>
+  <description><![CDATA[]]></description>
+</item>
+</channel>
+</rss>
