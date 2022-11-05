@@ -704,5 +704,5 @@ int main()
 ---
 
 > 作者: [amcones](https://amcones.cn)  
-> URL: https://amcones.github.io/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%8F%8A%E5%85%B6%E6%89%A9%E5%B1%95/  
+> URL: https://amcones.cn/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%8F%8A%E5%85%B6%E6%89%A9%E5%B1%95/  
 

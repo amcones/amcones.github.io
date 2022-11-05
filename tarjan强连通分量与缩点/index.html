@@ -7,24 +7,24 @@
     <meta name="robots" content="noodp" />
     <title>Tarjan强连通分量与缩点 - 尤利の博客</title><meta name="author" content="amcones">
 <meta name="author-link" content="https://amcones.cn">
-<meta name="description" content="一个SE学生的个人博客。" /><meta name="keywords" content='Algorithm' /><meta itemprop="name" content="Tarjan强连通分量与缩点">
+<meta name="description" content="一个SE学生的个人博客。" /><meta name="keywords" content='Algorithm, SCC' /><meta itemprop="name" content="Tarjan强连通分量与缩点">
 <meta itemprop="description" content=""><meta itemprop="datePublished" content="2022-11-04T21:55:33+08:00" />
 <meta itemprop="dateModified" content="2022-11-04T21:55:33+08:00" />
-<meta itemprop="wordCount" content="573"><meta itemprop="image" content="https://amcones.github.io/icons/favicon-32x32.png"/>
-<meta itemprop="keywords" content="Algorithm," /><meta property="og:title" content="Tarjan强连通分量与缩点" />
+<meta itemprop="wordCount" content="573"><meta itemprop="image" content="https://amcones.cn/icons/favicon-32x32.png"/>
+<meta itemprop="keywords" content="Algorithm,SCC," /><meta property="og:title" content="Tarjan强连通分量与缩点" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://amcones.github.io/tarjan%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%E4%B8%8E%E7%BC%A9%E7%82%B9/" /><meta property="og:image" content="https://amcones.github.io/icons/favicon-32x32.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://amcones.cn/tarjan%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%E4%B8%8E%E7%BC%A9%E7%82%B9/" /><meta property="og:image" content="https://amcones.cn/icons/favicon-32x32.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-11-04T21:55:33+08:00" />
 <meta property="article:modified_time" content="2022-11-04T21:55:33+08:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://amcones.github.io/icons/favicon-32x32.png"/>
+<meta name="twitter:image" content="https://amcones.cn/icons/favicon-32x32.png"/>
 
 <meta name="twitter:title" content="Tarjan强连通分量与缩点"/>
 <meta name="twitter:description" content=""/>
 <meta name="application-name" content="尤利の博客">
-<meta name="apple-mobile-web-app-title" content="尤利の博客"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/icons/favicon-32x32.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://amcones.github.io/tarjan%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%E4%B8%8E%E7%BC%A9%E7%82%B9/" /><link rel="prev" href="https://amcones.github.io/fft%E4%B8%8Entt/" /><link rel="next" href="https://amcones.github.io/%E6%9A%91%E8%AE%AD%E4%B9%8B%E7%BD%9A%E8%AE%AD%E5%A4%A7%E7%A4%BC%E5%8C%85/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+<meta name="apple-mobile-web-app-title" content="尤利の博客"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/icons/favicon-32x32.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://amcones.cn/tarjan%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%E4%B8%8E%E7%BC%A9%E7%82%B9/" /><link rel="prev" href="https://amcones.cn/fft%E4%B8%8Entt/" /><link rel="next" href="https://amcones.cn/%E6%9A%91%E8%AE%AD%E4%B9%8B%E7%BD%9A%E8%AE%AD%E5%A4%A7%E7%A4%BC%E5%8C%85/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "BlogPosting",
@@ -32,9 +32,9 @@
     "inLanguage": "zh-CN",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https:\/\/amcones.github.io\/tarjan%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%E4%B8%8E%E7%BC%A9%E7%82%B9\/"
-    },"genre": "posts","keywords": "Algorithm","wordcount":  573 ,
-    "url": "https:\/\/amcones.github.io\/tarjan%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%E4%B8%8E%E7%BC%A9%E7%82%B9\/","datePublished": "2022-11-04T21:55:33+08:00","dateModified": "2022-11-04T21:55:33+08:00","publisher": {
+      "@id": "https:\/\/amcones.cn\/tarjan%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%E4%B8%8E%E7%BC%A9%E7%82%B9\/"
+    },"genre": "posts","keywords": "Algorithm, SCC","wordcount":  573 ,
+    "url": "https:\/\/amcones.cn\/tarjan%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%E4%B8%8E%E7%BC%A9%E7%82%B9\/","datePublished": "2022-11-04T21:55:33+08:00","dateModified": "2022-11-04T21:55:33+08:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
         "@type": "Person",
@@ -197,7 +197,7 @@
     data-sizes="auto"
     alt="amcones"
     title="amcones"/>&nbsp;amcones</a></span>
-          <span class="post-category">收录于 <a href="/categories/algorithm/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Algorithm</a></span></div>
+          <span class="post-category">收录于 <a href="/categories/algorithm/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Algorithm</a>&ensp;<a href="/categories/graph-theory/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Graph Theory</a></span></div>
       <div class="post-meta-line"><span title=2022-11-04&#32;21:55:33><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-11-04">2022-11-04</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 573 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 2 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="Tarjan强连通分量与缩点">
               <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
             </span>&nbsp;</div>
@@ -328,16 +328,16 @@
     <div class="post-info-line">
       <div class="post-info-md"><span><a href="/tarjan%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%E4%B8%8E%E7%BC%A9%E7%82%B9/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span></div>
       <div class="post-info-share">
-        <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://amcones.github.io/tarjan%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%E4%B8%8E%E7%BC%A9%E7%82%B9/" data-title="Tarjan强连通分量与缩点" data-hashtags="Algorithm"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
-  <a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://amcones.github.io/tarjan%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%E4%B8%8E%E7%BC%A9%E7%82%B9/" data-hashtag="Algorithm"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
-  <a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://amcones.github.io/tarjan%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%E4%B8%8E%E7%BC%A9%E7%82%B9/" data-title="Tarjan强连通分量与缩点"><i class="fa-brands fa-evernote fa-fw" aria-hidden="true"></i></a>
+        <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://amcones.cn/tarjan%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%E4%B8%8E%E7%BC%A9%E7%82%B9/" data-title="Tarjan强连通分量与缩点" data-hashtags="Algorithm,SCC"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://amcones.cn/tarjan%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%E4%B8%8E%E7%BC%A9%E7%82%B9/" data-hashtag="Algorithm"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://amcones.cn/tarjan%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%E4%B8%8E%E7%BC%A9%E7%82%B9/" data-title="Tarjan强连通分量与缩点"><i class="fa-brands fa-evernote fa-fw" aria-hidden="true"></i></a>
   </span>
       </div>
     </div>
   </div>
 
   <div class="post-info-more">
-    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/algorithm/">Algorithm</a></section>
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/algorithm/">Algorithm</a>,&nbsp;<a href="/tags/scc/">SCC</a></section>
     <section>
       <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
     </section>

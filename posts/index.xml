@@ -1,71 +1,79 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>所有文章 - 尤利の博客</title>
-    <link>https://amcones.github.io/posts/</link>
+    <link>https://amcones.cn/posts/</link>
     <description>所有文章 | 尤利の博客</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>a587212@126.com (amcones)</managingEditor>
-      <webMaster>a587212@126.com (amcones)</webMaster><lastBuildDate>Sat, 05 Nov 2022 01:19:27 &#43;0800</lastBuildDate><atom:link href="https://amcones.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>a587212@126.com (amcones)</webMaster><lastBuildDate>Sat, 05 Nov 2022 20:05:40 &#43;0800</lastBuildDate><atom:link href="https://amcones.cn/posts/" rel="self" type="application/rss+xml" /><item>
+  <title>LCA算法总结</title>
+  <link>https://amcones.cn/lca%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/</link>
+  <pubDate>Sat, 05 Nov 2022 20:05:40 &#43;0800</pubDate>
+  <author>amcones</author>
+  <guid>https://amcones.cn/lca%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>线段树及其扩展</title>
-  <link>https://amcones.github.io/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%8F%8A%E5%85%B6%E6%89%A9%E5%B1%95/</link>
+  <link>https://amcones.cn/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%8F%8A%E5%85%B6%E6%89%A9%E5%B1%95/</link>
   <pubDate>Sat, 05 Nov 2022 01:19:27 &#43;0800</pubDate>
   <author>amcones</author>
-  <guid>https://amcones.github.io/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%8F%8A%E5%85%B6%E6%89%A9%E5%B1%95/</guid>
+  <guid>https://amcones.cn/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%8F%8A%E5%85%B6%E6%89%A9%E5%B1%95/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>最短路算法总结</title>
-  <link>https://amcones.github.io/%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/</link>
+  <link>https://amcones.cn/%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/</link>
   <pubDate>Fri, 04 Nov 2022 21:57:23 &#43;0800</pubDate>
   <author>amcones</author>
-  <guid>https://amcones.github.io/%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/</guid>
+  <guid>https://amcones.cn/%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>使用frp搭建个人办公网络</title>
-  <link>https://amcones.github.io/%E4%BD%BF%E7%94%A8frp%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8A%9E%E5%85%AC%E7%BD%91%E7%BB%9C/</link>
+  <link>https://amcones.cn/%E4%BD%BF%E7%94%A8frp%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8A%9E%E5%85%AC%E7%BD%91%E7%BB%9C/</link>
   <pubDate>Fri, 04 Nov 2022 21:56:26 &#43;0800</pubDate>
   <author>amcones</author>
-  <guid>https://amcones.github.io/%E4%BD%BF%E7%94%A8frp%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8A%9E%E5%85%AC%E7%BD%91%E7%BB%9C/</guid>
+  <guid>https://amcones.cn/%E4%BD%BF%E7%94%A8frp%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8A%9E%E5%85%AC%E7%BD%91%E7%BB%9C/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>暑训之罚训大礼包</title>
-  <link>https://amcones.github.io/%E6%9A%91%E8%AE%AD%E4%B9%8B%E7%BD%9A%E8%AE%AD%E5%A4%A7%E7%A4%BC%E5%8C%85/</link>
+  <link>https://amcones.cn/%E6%9A%91%E8%AE%AD%E4%B9%8B%E7%BD%9A%E8%AE%AD%E5%A4%A7%E7%A4%BC%E5%8C%85/</link>
   <pubDate>Fri, 04 Nov 2022 21:56:08 &#43;0800</pubDate>
   <author>amcones</author>
-  <guid>https://amcones.github.io/%E6%9A%91%E8%AE%AD%E4%B9%8B%E7%BD%9A%E8%AE%AD%E5%A4%A7%E7%A4%BC%E5%8C%85/</guid>
+  <guid>https://amcones.cn/%E6%9A%91%E8%AE%AD%E4%B9%8B%E7%BD%9A%E8%AE%AD%E5%A4%A7%E7%A4%BC%E5%8C%85/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>Tarjan强连通分量与缩点</title>
-  <link>https://amcones.github.io/tarjan%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%E4%B8%8E%E7%BC%A9%E7%82%B9/</link>
+  <link>https://amcones.cn/tarjan%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%E4%B8%8E%E7%BC%A9%E7%82%B9/</link>
   <pubDate>Fri, 04 Nov 2022 21:55:33 &#43;0800</pubDate>
   <author>amcones</author>
-  <guid>https://amcones.github.io/tarjan%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%E4%B8%8E%E7%BC%A9%E7%82%B9/</guid>
+  <guid>https://amcones.cn/tarjan%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%E4%B8%8E%E7%BC%A9%E7%82%B9/</guid>
   <description><![CDATA[]]></description>
 </item>
 <item>
   <title>FFT与NTT</title>
-  <link>https://amcones.github.io/fft%E4%B8%8Entt/</link>
+  <link>https://amcones.cn/fft%E4%B8%8Entt/</link>
   <pubDate>Fri, 04 Nov 2022 20:57:06 &#43;0800</pubDate>
   <author>amcones</author>
-  <guid>https://amcones.github.io/fft%E4%B8%8Entt/</guid>
+  <guid>https://amcones.cn/fft%E4%B8%8Entt/</guid>
   <description><![CDATA[个人对于FFT/NTT的一些记录]]></description>
 </item>
 <item>
   <title>主题功能测试</title>
-  <link>https://amcones.github.io/%E4%B8%BB%E9%A2%98%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/</link>
+  <link>https://amcones.cn/%E4%B8%BB%E9%A2%98%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/</link>
   <pubDate>Thu, 03 Nov 2022 11:06:07 &#43;0800</pubDate>
   <author>amcones</author>
-  <guid>https://amcones.github.io/%E4%B8%BB%E9%A2%98%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/</guid>
+  <guid>https://amcones.cn/%E4%B8%BB%E9%A2%98%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/</guid>
   <description><![CDATA[测试主题功能]]></description>
 </item>
 <item>
   <title>hugo 站点开站记录</title>
-  <link>https://amcones.github.io/hugo-%E7%AB%99%E7%82%B9%E5%BC%80%E7%AB%99%E8%AE%B0%E5%BD%95/</link>
+  <link>https://amcones.cn/hugo-%E7%AB%99%E7%82%B9%E5%BC%80%E7%AB%99%E8%AE%B0%E5%BD%95/</link>
   <pubDate>Thu, 03 Nov 2022 09:10:18 &#43;0800</pubDate>
   <author>amcones</author>
-  <guid>https://amcones.github.io/hugo-%E7%AB%99%E7%82%B9%E5%BC%80%E7%AB%99%E8%AE%B0%E5%BD%95/</guid>
+  <guid>https://amcones.cn/hugo-%E7%AB%99%E7%82%B9%E5%BC%80%E7%AB%99%E8%AE%B0%E5%BD%95/</guid>
   <description><![CDATA[<p>记录一下从 <code>Wordpress</code> 迁移到 <code>hugo</code> 的心路历程。</p>]]></description>
 </item>
 </channel>

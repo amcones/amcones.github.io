@@ -84,5 +84,5 @@ void tarjan(int u) {
 ---
 
 > 作者: [amcones](https://amcones.cn)  
-> URL: https://amcones.github.io/tarjan%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%E4%B8%8E%E7%BC%A9%E7%82%B9/  
+> URL: https://amcones.cn/tarjan%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%E4%B8%8E%E7%BC%A9%E7%82%B9/  
 

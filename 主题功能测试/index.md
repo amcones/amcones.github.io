@@ -328,5 +328,5 @@ this is a center-quote shortcode example.
 ---
 
 > 作者: [amcones](https://amcones.cn)  
-> URL: https://amcones.github.io/%E4%B8%BB%E9%A2%98%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/  
+> URL: https://amcones.cn/%E4%B8%BB%E9%A2%98%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/  
 

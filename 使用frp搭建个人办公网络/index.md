@@ -158,5 +158,5 @@ sudo launchctl load -w ~/Library/LaunchAgents/frpc.plist
 ---
 
 > 作者: [amcones](https://amcones.cn)  
-> URL: https://amcones.github.io/%E4%BD%BF%E7%94%A8frp%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8A%9E%E5%85%AC%E7%BD%91%E7%BB%9C/  
+> URL: https://amcones.cn/%E4%BD%BF%E7%94%A8frp%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8A%9E%E5%85%AC%E7%BD%91%E7%BB%9C/  
 

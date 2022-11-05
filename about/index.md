@@ -39,5 +39,5 @@
 ---
 
 > 作者: [amcones](https://amcones.cn)  
-> URL: https://amcones.github.io/about/  
+> URL: https://amcones.cn/about/  
 

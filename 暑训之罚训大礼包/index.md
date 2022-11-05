@@ -294,5 +294,5 @@ $$
 ---
 
 > 作者: [amcones](https://amcones.cn)  
-> URL: https://amcones.github.io/%E6%9A%91%E8%AE%AD%E4%B9%8B%E7%BD%9A%E8%AE%AD%E5%A4%A7%E7%A4%BC%E5%8C%85/  
+> URL: https://amcones.cn/%E6%9A%91%E8%AE%AD%E4%B9%8B%E7%BD%9A%E8%AE%AD%E5%A4%A7%E7%A4%BC%E5%8C%85/  
 

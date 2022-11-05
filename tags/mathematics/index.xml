@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>Mathematics - 标签 - 尤利の博客</title>
-    <link>https://amcones.github.io/tags/mathematics/</link>
+    <link>https://amcones.cn/tags/mathematics/</link>
     <description>Mathematics - 标签 - 尤利の博客</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>a587212@126.com (amcones)</managingEditor>
-      <webMaster>a587212@126.com (amcones)</webMaster><lastBuildDate>Fri, 04 Nov 2022 20:57:06 &#43;0800</lastBuildDate><atom:link href="https://amcones.github.io/tags/mathematics/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>a587212@126.com (amcones)</webMaster><lastBuildDate>Fri, 04 Nov 2022 20:57:06 &#43;0800</lastBuildDate><atom:link href="https://amcones.cn/tags/mathematics/" rel="self" type="application/rss+xml" /><item>
   <title>FFT与NTT</title>
-  <link>https://amcones.github.io/fft%E4%B8%8Entt/</link>
+  <link>https://amcones.cn/fft%E4%B8%8Entt/</link>
   <pubDate>Fri, 04 Nov 2022 20:57:06 &#43;0800</pubDate>
   <author>amcones</author>
-  <guid>https://amcones.github.io/fft%E4%B8%8Entt/</guid>
+  <guid>https://amcones.cn/fft%E4%B8%8Entt/</guid>
   <description><![CDATA[个人对于FFT/NTT的一些记录]]></description>
 </item>
 </channel>

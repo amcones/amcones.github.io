@@ -65,5 +65,5 @@
 ---
 
 > 作者: [amcones](https://amcones.cn)  
-> URL: https://amcones.github.io/hugo-%E7%AB%99%E7%82%B9%E5%BC%80%E7%AB%99%E8%AE%B0%E5%BD%95/  
+> URL: https://amcones.cn/hugo-%E7%AB%99%E7%82%B9%E5%BC%80%E7%AB%99%E8%AE%B0%E5%BD%95/  
 

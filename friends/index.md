@@ -26,5 +26,5 @@
 ---
 
 > 作者: [amcones](https://amcones.cn)  
-> URL: https://amcones.github.io/friends/  
+> URL: https://amcones.cn/friends/  
 

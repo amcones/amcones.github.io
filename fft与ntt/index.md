@@ -109,5 +109,5 @@ void change(Complex y[], int len) {
 ---
 
 > 作者: [amcones](https://amcones.cn)  
-> URL: https://amcones.github.io/fft%E4%B8%8Entt/  
+> URL: https://amcones.cn/fft%E4%B8%8Entt/  
 

@@ -7,5 +7,5 @@
 ---
 
 > 作者: [amcones](https://amcones.cn)  
-> URL: https://amcones.github.io/offline/  
+> URL: https://amcones.cn/offline/  
 
