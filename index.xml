@@ -4,9 +4,17 @@
     <link>https://amcones.cn/</link>
     <description>一个SE学生的个人博客。</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>a587212@126.com (amcones)</managingEditor>
-      <webMaster>a587212@126.com (amcones)</webMaster><lastBuildDate>Sat, 05 Nov 2022 20:10:52 &#43;0800</lastBuildDate>
+      <webMaster>a587212@126.com (amcones)</webMaster><lastBuildDate>Fri, 11 Nov 2022 11:20:10 &#43;0800</lastBuildDate>
       <atom:link href="https://amcones.cn/index.xml" rel="self" type="application/rss+xml" />
     <item>
+  <title>畅想计算机</title>
+  <link>https://amcones.cn/%E7%95%85%E6%83%B3%E8%AE%A1%E7%AE%97%E6%9C%BA/</link>
+  <pubDate>Fri, 11 Nov 2022 11:20:10 &#43;0800</pubDate>
+  <author>amcones</author>
+  <guid>https://amcones.cn/%E7%95%85%E6%83%B3%E8%AE%A1%E7%AE%97%E6%9C%BA/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>对于近况的一些总结（1）</title>
   <link>https://amcones.cn/%E5%AF%B9%E4%BA%8E%E8%BF%91%E5%86%B5%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%931/</link>
   <pubDate>Sat, 05 Nov 2022 20:10:52 &#43;0800</pubDate>
@@ -77,14 +85,6 @@
   <author>amcones</author>
   <guid>https://amcones.cn/%E4%B8%BB%E9%A2%98%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/</guid>
   <description><![CDATA[测试主题功能]]></description>
-</item>
-<item>
-  <title>hugo 站点开站记录</title>
-  <link>https://amcones.cn/hugo-%E7%AB%99%E7%82%B9%E5%BC%80%E7%AB%99%E8%AE%B0%E5%BD%95/</link>
-  <pubDate>Thu, 03 Nov 2022 09:10:18 &#43;0800</pubDate>
-  <author>amcones</author>
-  <guid>https://amcones.cn/hugo-%E7%AB%99%E7%82%B9%E5%BC%80%E7%AB%99%E8%AE%B0%E5%BD%95/</guid>
-  <description><![CDATA[<p>记录一下从 <code>Wordpress</code> 迁移到 <code>hugo</code> 的心路历程。</p>]]></description>
 </item>
 </channel>
 </rss>
