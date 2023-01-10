@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>计算机组成原理 个人笔记 - 尤利の博客</title><meta name="author" content="amcones">
+<meta name="author-link" content="https://amcones.cn">
+<meta name="description" content="一个SE学生的个人博客。" /><meta name="keywords" content='default' /><meta itemprop="name" content="计算机组成原理 个人笔记">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2022-11-28T18:15:35+08:00" />
+<meta itemprop="dateModified" content="2022-11-28T18:15:35+08:00" />
+<meta itemprop="wordCount" content="2911"><meta itemprop="image" content="https://amcones.cn/icons/favicon-32x32.png"/>
+<meta itemprop="keywords" content="default," /><meta property="og:title" content="计算机组成原理 个人笔记" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://amcones.cn/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/" /><meta property="og:image" content="https://amcones.cn/icons/favicon-32x32.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-11-28T18:15:35+08:00" />
+<meta property="article:modified_time" content="2022-11-28T18:15:35+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://amcones.cn/icons/favicon-32x32.png"/>
+
+<meta name="twitter:title" content="计算机组成原理 个人笔记"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="尤利の博客">
+<meta name="apple-mobile-web-app-title" content="尤利の博客"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/icons/favicon-32x32.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://amcones.cn/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/" /><link rel="prev" href="https://amcones.cn/codeforces-1753b/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "计算机组成原理 个人笔记",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/amcones.cn\/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0\/"
+    },"genre": "posts","keywords": "default","wordcount":  2911 ,
+    "url": "https:\/\/amcones.cn\/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0\/","datePublished": "2022-11-28T18:15:35+08:00","dateModified": "2022-11-28T18:15:35+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "amcones"
+      },"description": ""
+  }
+  </script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper" data-github-corner="right">
+    <div class="header-title">
+      <a href="/" title="尤利の博客"><span class="header-title-pre">💡</span><span class="header-title-text">尤利の博客</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 文章</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/categories/"
+                
+                
+              ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/friends/"
+                
+                
+              ><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="https://travellings.link/"
+                
+                rel="noopener noreferrer" target="_blank"
+              ><i class="fa-solid fa-subway fa-fw fa-sm" aria-hidden="true"></i> 开往</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="随便搜点什么吧～" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="尤利の博客"><span class="header-title-pre">💡</span><span class="header-title-text">尤利の博客</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="随便搜点什么吧～" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> 文章</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/categories/"
+                  
+                  
+                ><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden="true"></i> 分类</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> 标签</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/friends/"
+                  
+                  
+                ><i class="fa-solid fa-chain fa-fw fa-sm" aria-hidden="true"></i> 友链</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> 关于</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="https://travellings.link/"
+                  
+                  rel="noopener noreferrer" target="_blank"
+                ><i class="fa-solid fa-subway fa-fw fa-sm" aria-hidden="true"></i> 开往</a></li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    
+</aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
+        <span title="转载" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i></span><span>计算机组成原理 个人笔记</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://amcones.cn" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><img
+    class="lazyload avatar"
+    src="/svg/loading.min.svg"
+    data-src="/images/uli.jpeg"
+    data-srcset="/images/uli.jpeg, /images/uli.jpeg 1.5x, /images/uli.jpeg 2x"
+    data-sizes="auto"
+    alt="amcones"
+    title="amcones"/>&nbsp;amcones</a></span>
+          <span class="post-category">收录于 <a href="/categories/default/"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> default</a></span></div>
+      <div class="post-meta-line"><span title=2022-11-28&#32;18:15:35><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-11-28">2022-11-28</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 约 2911 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 预计阅读 6 分钟</span>&nbsp;<span id="busuanzi_container_page_pv" class="busuanzi_visitors comment-visitors" data-flag-title="计算机组成原理 个人笔记">
+              <i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_page_pv">-</span>&nbsp;次阅读
+            </span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#第一章">第一章</a>
+      <ul>
+        <li><a href="#概要">概要</a></li>
+        <li><a href="#考点">考点</a>
+          <ul>
+            <li><a href="#1-时钟周期">1. 时钟周期</a></li>
+            <li><a href="#2-cpi">2. CPI</a></li>
+            <li><a href="#3-cpu时间">3. CPU时间</a></li>
+            <li><a href="#4-ipc">4. IPC</a></li>
+            <li><a href="#5-mips">5. MIPS</a></li>
+            <li><a href="#6-mflops">6. MFLOPS</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#第二章">第二章</a>
+      <ul>
+        <li><a href="#概要-1">概要</a></li>
+        <li><a href="#考点-1">考点</a>
+          <ul>
+            <li><a href="#1-数的机器码表示">1. 数的机器码表示</a></li>
+            <li><a href="#2-浮点数的表示"><strong>2. 浮点数的表示</strong></a></li>
+            <li><a href="#3数据校验">3.数据校验</a>
+              <ul>
+                <li><a href="#海明码">海明码</a></li>
+                <li><a href="#crc循环冗余校验">CRC循环冗余校验</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#第三章">第三章</a>
+      <ul>
+        <li><a href="#概要-2">概要</a></li>
+      </ul>
+    </li>
+    <li><a href="#第四章">第四章</a>
+      <ul>
+        <li><a href="#概要-3">概要</a></li>
+      </ul>
+    </li>
+    <li><a href="#第五章">第五章</a>
+      <ul>
+        <li><a href="#概要-4">概要</a></li>
+        <li><a href="#考点-2">考点</a>
+          <ul>
+            <li><a href="#编址">编址</a></li>
+            <li><a href="#寻址">寻址</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#第六章">第六章</a>
+      <ul>
+        <li><a href="#概要-5">概要</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div
+      class="content"
+      id="content"
+      
+      
+    ><h2 id="前言">前言</h2>
+<p>快要考计组了，然而才刚刚开始学。虽然看上去很繁杂（确实也挺繁杂），不过似乎可以提炼出几个关键的知识点（来应付考试）。在这里记录下这些关键点和做题方法。</p>
+<h2 id="第一章">第一章</h2>
+<h3 id="概要">概要</h3>
+<p>这一章主要是讲了计算机史和计算机的<strong>性能指标</strong>。</p>
+<h3 id="考点">考点</h3>
+<h4 id="1-时钟周期">1. 时钟周期</h4>
+<p>最小的，最基本的时间单位，在一个时钟周期内CPU仅完成一个最基本动作。是时钟频率的倒数。
+$$
+f=1GHz(10^9Hz),T=1ns
+$$</p>
+<h4 id="2-cpi">2. CPI</h4>
+<p>执行每条指令的<strong>平均时钟周期数</strong>。</p>
+<p>设程序的总指令数为$IC$， 程序执行所需的时钟周期数为$m$，时钟周期为$T$，频率为$f$，那么：
+$$
+CPI = \frac{m}{IC}
+$$
+如果对于一个程序中的每一<strong>类</strong>指令分别给出它的$CPI_i$和使用频率$P_i$，每类指令的条数$IC_i$，那么$CPI$可以表示为：
+$$
+CPI = \sum_{i=1}^n(CPI_i \times P_i)=\sum_{i=1}^n(CPI_i \times \frac{IC_i}{IC})
+$$</p>
+<h4 id="3-cpu时间">3. CPU时间</h4>
+<p>执行一段程序要花费的<strong>时间</strong>。某段程序的CPU时间$T_{CPU}$可以表示为
+$$
+T_{CPU} = CPI \times IC \times T = \frac{CPI \times IC}{f}
+$$
+常用于衡量优化成功与否，程序运行快慢等。</p>
+<h4 id="4-ipc">4. IPC</h4>
+<p>$$
+IPC=\frac{1}{CPI}
+$$</p>
+<h4 id="5-mips">5. MIPS</h4>
+<p>每秒百万条指令，可以作为衡量计算机性能的指标。
+$$
+MIPS = \frac{f}{CPI}=IPC \times f
+$$</p>
+<h4 id="6-mflops">6. MFLOPS</h4>
+<p>每秒百万次浮点运算。
+$$
+MFLOPS=\frac{IC_{flops}}{T_{CPU}\times10^6}
+$$</p>
+<h2 id="第二章">第二章</h2>
+<h3 id="概要-1">概要</h3>
+<p>这章主要讲了数据在计算机中的表示。</p>
+<h3 id="考点-1">考点</h3>
+<h4 id="1-数的机器码表示">1. 数的机器码表示</h4>
+<p>由符号和数值一起编码表示的二进制数称为机器数或<strong>机器码</strong>。</p>
+<p>原码：数的符号化表示，在开头加上一个符号位。表示直观，但运算复杂，故在计算机中只用于表示浮点数的尾码。</p>
+<p>反码：也称<strong>1的补码</strong>（因为反码和原码相加各位均为1），数值上满足：
+$$
+[x]_\text{反}=\begin{cases}
+x &amp;{0 \leqslant x \lt 2^n}\
+(2^{n+1}-1)+x &amp;{-2^n\lt x\leqslant 0}
+\end{cases}
+$$
+即<strong>正数的反码等于原码，负数的反码等于原码按位取反（符号位除外）</strong>。</p>
+<p>加法时符号位可以直接参与运算，做减法时将被减数的反码加上减数负数的反码即可。但由于要循环进位，仍没有用于计算机。</p>
+<p><strong>补码</strong>：也称<strong>模2的补码</strong>。（因为补码和原码相加为2的次幂，即除最高位其它均为0）</p>
+<p>由于模的一些性质，补码的符号位可以直接参与运算，符号位的进位作为模被自动舍弃，减法也可以转换为加法。</p>
+<p>补码规则：原码大于0时等于原码，小于等于0时，真值加上模数就是补码。（<strong>模数在计算机中常常为字长</strong>）</p>
+<blockquote>
+<p>eg: 设某计算机字长为8位，求真值 $x=-(10101)<em>2$的补码。
+$x</em>{补}=2^8+(-10101)=1110 1011(\mod 2^8)$</p>
+</blockquote>
+<p>计算时有两种快速方法：</p>
+<ol>
+<li>反码法：当$x \lt 0$时，补码等于反码+1。适合用于硬件</li>
+<li>扫描法：当$x\lt 0$时，对真值从右往左扫描，第一个1和右边的0不变，剩下的全部取反。已知补码求原码也一样。</li>
+</ol>
+<p>变形补码：也称“模4补码”，由于有两个符号位，除了表示正负还可以表示正溢出负溢出。但因为成本问题依然没有采用。</p>
+<p>移码：只用于定点整数表示，编码方式是给真值加上一个常数偏移量。主要应用在浮点数表示上。</p>
+<h4 id="2-浮点数的表示"><strong>2. 浮点数的表示</strong></h4>
+<p>任何一个二进制数$N$可表示为：
+$$
+N=2^E \times M = 2^{\pm e}\times (\pm 0.m)
+$$
+类似于十进制科学计数法。</p>
+<p>由于$0.01111 \times 2^{101}$还可以表示为$0.1111 \times 2^{100}$，为了统一就需要规格化。常用的标准化有让尾数绝对值大于等于$(0.1)<em>2$即$(0.5)</em>{10}$。还有一种参考了十进制科学计数法的是让尾数绝对值在$(1,2)$之间。这样使得最高位始终为1，就可以隐藏。</p>
+<p>应用最为广泛的标准就是$IEEE754$。该标准主要包括32位和64位浮点数，分别对应C语言float和double。</p>
+<p>单精度浮点数的阶码8位，双精度11位，都有1位符号位，剩下的都用于表示尾数。</p>
+<p>$$
+N=(-1)^s\times2^{E-127}\times 1.M
+$$</p>
+<p>浮点数和十进制之间互相转化时，<strong>都是展开成32位二进制，提取阶码</strong>，确定了小数点位置后再处理尾数和符号就可以了。</p>
+<h4 id="3数据校验">3.数据校验</h4>
+<p>两个编码对应二进制位不同的个数称为<strong>码距</strong>，又称<strong>海明距离</strong>。码距越大，抗干扰能力、纠错能力越强，但编码效率越低。</p>
+<p>根据信息论原理，码距$d$与校验码的检错和纠错能力的关系如下：
+$$
+\begin{cases}
+d \geqslant e+1 &amp;可检验e个错误\
+d \geqslant 2t+1 &amp;可纠正t个错误\
+d\geqslant e+t+1 \And e\gt t &amp;可检测e个错误并纠正t个错误
+\end{cases}
+$$</p>
+<p>通过在原始数据中引入一部分冗余信息用于校验，利用数据整体的性质去检错甚至矫正错误。</p>
+<p>最基本的思想是奇偶校验。通过<strong>在最后添加1位</strong>作为校验位，要求校验位加上有效信息中的1的数量是偶数，那么接收方通过判断1的数量就可以知道是否出现了奇数位错误。当然，对于偶数位错是无法得知的。</p>
+<p>在奇偶校验上发展出了交叉奇偶校验，<strong>海明码</strong>也是基于此的一种多重奇偶校验。</p>
+<h5 id="海明码">海明码</h5>
+<p>由于特别重要，所以单独拆开讲。</p>
+<p>通过在2的次幂位置放入校验码，对各自管辖的分区进行多次奇偶校验，即可一步步二分缩小错误的范围。扩展海明码在第一位加入一个校验码对整体进行奇偶校验，从而检验是否两位错。</p>
+<p>从本质上来说，多次奇偶校验的每一次，都是在<strong>询问校验码对应二进制位置上的那一位是否出错。</strong> 如1（0001）询问的是最低位是否出错，2（0010）询问的是倒数第二位是否出错，4（0100）询问第二位。。。这种神奇的性质来源于位置与二进制性质的配合。</p>
+<p>多次奇偶校验便于硬件实现，而在计算时，利用二进制性质，可以简单地将所有<strong>有效信息为1的位置编码异或</strong>，得到的结果就是出错的位置。</p>
+<p>一行Python实现海明码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">^</span> <span class="n">y</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bits</span><span class="p">)</span> <span class="k">if</span> <span class="n">b</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>海明码的校验位只需要$\log_2n$个，通过校验更大的数据量可以让冗余度无限接近0。但这样由于出错率上升，所以要找到一个冗余度与错误率的平衡。更近一步的，由于实际生活中出错很有可能是连续的一块，所以可以采用<strong>交织编码</strong>方便应用海明码。
+海明发明海明码是经过了深思熟虑和多方面的思考。虽然它的原理看上去十分简单，但得到它并不容易。
+Luck favors a prepared mind.</p>
+</blockquote>
+<h5 id="crc循环冗余校验">CRC循环冗余校验</h5>
+<p>一种基于模2运算建立编码规则的校验码。</p>
+<p>具体来说，给定一个生成多项式，然后根据多项式的系数得到一个二进制除数，在原信息后添加除数长度$r$个0后进行模2除（即每步进行异或），最后得到一个$r-1$位的校验和。把校验和放在原信息的最后，就是带有CRC校验的数据。检验出错时，只需要判断它能否被生成多项式整除即可。</p>
+<p>实际上，CRC也能够纠正错误。由于二进制的位独立性，异或满足结合律，所以模2除法满足结合律。那么就可以把出错的那一位通过补0作除法拆分出去。由于CRC编码的非0余数具有循环特性，那么通过对余数循环做除法，就能知道出错的位置。</p>
+<h2 id="第三章">第三章</h2>
+<h3 id="概要-2">概要</h3>
+<h2 id="第四章">第四章</h2>
+<h3 id="概要-3">概要</h3>
+<p>本章介绍了存储系统。</p>
+<h2 id="第五章">第五章</h2>
+<h3 id="概要-4">概要</h3>
+<p>本章介绍了指令系统。</p>
+<h3 id="考点-2">考点</h3>
+<h4 id="编址">编址</h4>
+<p>一条指令有两部分组成：地址码（A，操作数）和操作码（OP）
+定长操作码和扩展操作码：四、三、二、一、零地址操作码</p>
+<h4 id="寻址">寻址</h4>
+<p>指令寻址：（用指令去控制寻址）</p>
+<ol>
+<li>顺序寻址 PC自动自增执行下一条指令</li>
+<li>跳转寻址 跳转指令 更改PC寄存器</li>
+</ol>
+<p>数据寻址：（用数据去控制寻址）</p>
+<ol>
+<li>立即寻址 操作数直接写在指令里，叫做立即数</li>
+<li>直接寻址 指令给出操作数存放的位置</li>
+<li>间接寻址 指令给出存放了有效位置的位置</li>
+<li>寄存器寻址 指令给出存操作数的寄存器</li>
+<li>寄存器间接寻址 指令给出存放操作数地址的寄存器</li>
+<li>隐藏寻址 另一个操作数隐藏在指令中，比如在ACC</li>
+</ol>
+<p>偏移寻址：（用寄存器中的值加上指令中的形式地址来寻址）</p>
+<ol>
+<li>基址寻址 用基址BR寄存器或通用寄存器，面向操作系统</li>
+<li>变址寻址 用变址IX寄存器或通用寄存器，面向用户</li>
+<li>相对寻址 对PC加上偏移量</li>
+</ol>
+<p>堆栈寻址： （操作数存在堆栈中，用SP寄存器存栈顶地址）</p>
+<h2 id="第六章">第六章</h2>
+<h3 id="概要-5">概要</h3>
+<p>本章介绍了CPU，指令流水线等。</p></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title=2022-11-28&#32;18:15:35>更新于 2022-11-28&nbsp;</span>
+      </div><div class="post-info-license">
+          <span>CC BY-NC 4.0</span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a href="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://amcones.cn/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/" data-title="计算机组成原理 个人笔记" data-hashtags="default"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://amcones.cn/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/" data-hashtag="default"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://amcones.cn/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/" data-title="计算机组成原理 个人笔记"><i class="fa-brands fa-evernote fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/default/">default</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/codeforces-1753b/" class="prev" rel="prev" title="Codeforces 1753B"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Codeforces 1753B</a></div>
+</div>
+<div id="comments"><div id="giscus">
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="amcones/amcones.github.io"
+            data-repo-id="R_kgDOGJNz_A"
+            data-category="General"
+            data-category-id="DIC_kwDOGJNz_M4CSVGz"
+            data-mapping="title"
+            
+            data-theme="preferred_color_scheme"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="top"
+            data-lang="zh-CN"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async
+            defer
+          ></script>
+          <noscript>
+            Please enable JavaScript to view the comments powered by <a href="https://giscus.app/" rel="external nofollow noopener noreferrer">giscus</a>.
+          </noscript>
+        </div></div></article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.101.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.2.17-RC"><img class="fixit-icon" src="/fixit.min.svg" alt="FixIt logo" />&nbsp;FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://amcones.cn"target="_blank" rel="external nofollow noopener noreferrer">amcones</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div><div class="footer-line statistics"></div><div class="footer-line ibruce">
+          <span id="busuanzi_container_site_uv" title='总访客数'><i class="fa-regular fa-user fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span><span id="busuanzi_container_site_pv" class="footer-divider" title='总访问量'><i class="fa-regular fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span></span>
+        </div><div class="footer-line beian"><span class="icp footer-divider"><a href="https://beian.miit.gov.cn/">沪ICP备20007771号-2</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><a href="https://github.com/amcones/amcones.github.io/" title="在 GitHub 上查看源代码"target="_blank" rel="external nofollow" class="github-corner right d-none-mobile"><svg viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;"></div><noscript>
+    <div class="noscript-warning">FixIt 主题在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/lunr/lunr.min.js" defer></script><script src="/lib/lunr/lunr.stemmer.support.min.js" defer></script><script src="/lib/lunr/lunr.zh.min.js" defer></script><script src="/lib/lazysizes/lazysizes.min.js" async defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async defer></script><script>window.config={"autoBookmark":true,"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"giscus":{"darkTheme":"dark","lightTheme":"light"}},"enablePWA":true,"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>
