@@ -4,7 +4,15 @@
     <link>https://amcones.cn/posts/</link>
     <description>所有文章 | 尤利の博客</description>
     <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>a587212@126.com (amcones)</managingEditor>
-      <webMaster>a587212@126.com (amcones)</webMaster><lastBuildDate>Sat, 12 Nov 2022 10:02:15 &#43;0800</lastBuildDate><atom:link href="https://amcones.cn/posts/" rel="self" type="application/rss+xml" /><item>
+      <webMaster>a587212@126.com (amcones)</webMaster><lastBuildDate>Mon, 28 Nov 2022 18:15:35 &#43;0800</lastBuildDate><atom:link href="https://amcones.cn/posts/" rel="self" type="application/rss+xml" /><item>
+  <title>计算机组成原理 个人笔记</title>
+  <link>https://amcones.cn/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/</link>
+  <pubDate>Mon, 28 Nov 2022 18:15:35 &#43;0800</pubDate>
+  <author>amcones</author>
+  <guid>https://amcones.cn/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/</guid>
+  <description><![CDATA[]]></description>
+</item>
+<item>
   <title>Codeforces 1753B</title>
   <link>https://amcones.cn/codeforces-1753b/</link>
   <pubDate>Sat, 12 Nov 2022 10:02:15 &#43;0800</pubDate>
@@ -75,14 +83,6 @@
   <author>amcones</author>
   <guid>https://amcones.cn/tarjan%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%E4%B8%8E%E7%BC%A9%E7%82%B9/</guid>
   <description><![CDATA[]]></description>
-</item>
-<item>
-  <title>FFT与NTT</title>
-  <link>https://amcones.cn/fft%E4%B8%8Entt/</link>
-  <pubDate>Fri, 04 Nov 2022 20:57:06 &#43;0800</pubDate>
-  <author>amcones</author>
-  <guid>https://amcones.cn/fft%E4%B8%8Entt/</guid>
-  <description><![CDATA[个人对于FFT/NTT的一些记录]]></description>
 </item>
 </channel>
 </rss>
