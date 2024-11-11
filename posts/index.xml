@@ -1,1 +1,30 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on uli's blog</title><link>/posts/</link><description>Recent content in Posts on uli's blog</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Sun, 10 Nov 2024 23:11:25 +0800</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>踏上旅程</title><link>/posts/%E8%B8%8F%E4%B8%8A%E6%97%85%E7%A8%8B/</link><pubDate>Sun, 10 Nov 2024 23:11:25 +0800</pubDate><guid>/posts/%E8%B8%8F%E4%B8%8A%E6%97%85%E7%A8%8B/</guid><description>Bye, my land.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on uli's blog</title><link>/posts/</link><description>Recent content in Posts on uli's blog</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Mon, 11 Nov 2024 11:47:00 +0800</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>开站札记</title><link>/posts/%E5%BC%80%E7%AB%99%E6%9C%AD%E8%AE%B0/</link><pubDate>Mon, 11 Nov 2024 11:47:00 +0800</pubDate><guid>/posts/%E5%BC%80%E7%AB%99%E6%9C%AD%E8%AE%B0/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>哈喽，又是尤利。根据惯例，每次开始服务的新站点我都会写一篇开站札记，记录一下想法和技术。&lt;/p>
+&lt;p>上次，我带来了自己纯手工编写的博客 &lt;code>ulog&lt;/code>&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>，但随着部署的服务器到期，它早早地迎来了退役的时刻。&lt;/p>
+&lt;p>因此，我回到了曾使用过的 &lt;code>hugo&lt;/code>。&lt;/p>
+&lt;h2 id="简介">简介&lt;/h2>
+&lt;p>目前的技术方案是使用了静态博客系统 &lt;code>hugo&lt;/code>，部署在 &lt;code>GitHub Page&lt;/code>。这是一种再基础不过的部署方式。&lt;/p>
+&lt;p>简单来说，&lt;code>hugo&lt;/code> 是一个 &lt;code>Golang&lt;/code> 编写的程序，它能够将 &lt;code>markdown&lt;/code> 文件编译为静态的 &lt;code>HTML&lt;/code> 网页文件，然后直接放在 &lt;code>GitHub Page&lt;/code> 服务下托管。&lt;sup id="fnref:2">&lt;a href="#fn:2" class="footnote-ref" role="doc-noteref">2&lt;/a>&lt;/sup>&lt;/p>
+&lt;p>这种部署方式不需要服务器，不需要编程。对我来说，其还有独到的优点：&lt;/p>
+&lt;ul>
+&lt;li>本地编辑。可以在任何本地编辑器写 &lt;code>markdown&lt;/code> 文档，编辑体验好。&lt;/li>
+&lt;li>自动化部署。使用 &lt;code>GitHub Action&lt;/code> 实现推送后自动更新部署站点。&lt;/li>
+&lt;li>版本管理。得益于 &lt;code>Git&lt;/code> 的版本管理，文章的修改历史得到了良好的记录。&lt;/li>
+&lt;/ul>
+&lt;p>既然这么好，为什么我一度抛弃了 &lt;code>hugo&lt;/code> 转而自己开发博客系统呢？&lt;/p>
+&lt;ol>
+&lt;li>练手项目，想编写一个自己的长期运行的后端项目。&lt;/li>
+&lt;li>对 &lt;code>git&lt;/code> 的使用不够熟练，一度以为所有的文章都必须暴露在公网，无法实现加密等功能。&lt;/li>
+&lt;/ol>
+&lt;p>最根本的，还是我的心境发生了变化。我开始将注意力从读者转移到自身，从形式转移到内容，从琐碎转移到简单。将注意力从外在解放出来，专注于我自己的内容，是这次博客更新的主要目的。&lt;/p>
+&lt;div class="footnotes" role="doc-endnotes">
+&lt;hr>
+&lt;ol>
+&lt;li id="fn:1">
+&lt;p>使用 Golang 编写后端，React 编写前端的个人博客系统，依赖数据库。&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li id="fn:2">
+&lt;p>本质上类似于写了一个 Word 文档，放在网上供大家查看。&amp;#160;&lt;a href="#fnref:2" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/div></description></item><item><title>踏上旅程</title><link>/posts/%E8%B8%8F%E4%B8%8A%E6%97%85%E7%A8%8B/</link><pubDate>Sun, 10 Nov 2024 23:11:25 +0800</pubDate><guid>/posts/%E8%B8%8F%E4%B8%8A%E6%97%85%E7%A8%8B/</guid><description>Bye, my land.</description></item></channel></rss>
