@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>标签2 on uli&#39;s blog</title>
+    <link>http://localhost:1313/tags/%E6%A0%87%E7%AD%BE2/</link>
+    <description>Recent content in 标签2 on uli&#39;s blog</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 10 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/%E6%A0%87%E7%AD%BE2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>寻找自己</title>
+      <link>http://localhost:1313/posts/%E5%AF%BB%E6%89%BE%E8%87%AA%E5%B7%B1/</link>
+      <pubDate>Sun, 10 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E5%AF%BB%E6%89%BE%E8%87%AA%E5%B7%B1/</guid>
+      <description>&lt;h2 id=&#34;寻找自己&#34;&gt;寻找自己&lt;/h2&gt;&#xA;&lt;p&gt;某天醒来，心里升起了一丝不安，旋即变为了恐惧。&lt;/p&gt;&#xA;&lt;p&gt;我好像找不到自己了。&lt;/p&gt;&#xA;&lt;h2 id=&#34;heading&#34;&gt;&lt;/h2&gt;</description>
+    </item>
+  </channel>
+</rss>
