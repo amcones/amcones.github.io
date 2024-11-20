@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on uli's blog</title><link>/posts/</link><description>Recent content in Posts on uli's blog</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Wed, 20 Nov 2024 18:47:45 +0800</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>我的时间记录解决方案</title><link>/posts/%E6%88%91%E7%9A%84%E6%97%B6%E9%97%B4%E8%AE%B0%E5%BD%95%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link><pubDate>Wed, 20 Nov 2024 18:00:10 +0800</pubDate><guid>/posts/%E6%88%91%E7%9A%84%E6%97%B6%E9%97%B4%E8%AE%B0%E5%BD%95%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid><description>&lt;p>作为一个 P 人，我尝试过很多时间管理工具和方法。最近听了《纵横四海》的《时间贫困》和《精力管理》播客，有了一些新的认识，并且使用工具来帮助自己执行。&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on uli's blog</title><link>/posts/</link><description>Recent content in Posts on uli's blog</description><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Wed, 20 Nov 2024 18:51:10 +0800</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>我的时间记录解决方案</title><link>/posts/%E6%88%91%E7%9A%84%E6%97%B6%E9%97%B4%E8%AE%B0%E5%BD%95%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link><pubDate>Wed, 20 Nov 2024 18:00:10 +0800</pubDate><guid>/posts/%E6%88%91%E7%9A%84%E6%97%B6%E9%97%B4%E8%AE%B0%E5%BD%95%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid><description>&lt;p>作为一个 P 人，我尝试过很多时间管理工具和方法。最近听了《纵横四海》的《时间贫困》和《精力管理》播客，有了一些新的认识，并且使用工具来帮助自己执行。&lt;/p>
 &lt;blockquote>
 &lt;p>对于也想要实践时间记录的读者，强烈建议听一下这两期播客，里面详细介绍了时间记录的方法论和思想，这里就不展开了。&lt;/p>
 &lt;/blockquote>
@@ -8,9 +8,47 @@
 &lt;p>最终，我放弃了时间管理，转而使用 &lt;strong>时间记录&lt;/strong>。我不再用时间表约束自己，而是记录自己花费的时间，通过观察数据来刻意调整自己的行为。&lt;/p>
 &lt;h2 id="解决方案">解决方案&lt;/h2>
 &lt;p>《纵横四海》中，主持人使用日历 app 来记录时间，我则使用 notion 自制了更适合我的方案。&lt;/p>
+&lt;p>
+
+
+
+
+
+
+
+
+
+
+&lt;figure class="">
+
+ &lt;div>
+ &lt;img loading="lazy" alt="notion 数据库" src="https://ulipic-1258663779.cos.ap-shanghai.myqcloud.com/ulog/%E6%88%AA%E5%B1%8F2024-11-20%2018.49.48.png">
+ &lt;/div>
+
+ 
+&lt;/figure>&lt;/p>
 &lt;p>首先，日历 app 对我来说更适合用于未来事件的提醒，而非过去时间的记录。其次，仅通过任务分类的颜色来分析任务类型的时间占比只是感性认识，还不够直观精确。最后也是最重要的是，每做一件事情都要在日历 app 里记录时长，类型，任务名实在是太麻烦了。&lt;/p>
 &lt;p>因此，notion 的数据库是完成此项任务的最佳之选，和新推出的生成表单、notion calendar 以及苹果自动化一起，能够极大改善以上的种种问题。&lt;/p>
 &lt;p>首先，数据库本身就是用于记录的系统。其次，多种多样的视图能够精确直观地进行数据可视化分析，同时解决了日历在同一时间段记录多件事情会使占比不够直观的问题。最后，通过填写表单或拖拽 notion calendar，以及自动化记录睡眠数据极大简化了仅使用日历 app 的使用流程。除此之外，关系型数据库允许我们记录更多维度的数据，可以自由扩展。目前我还扩展记录了一个快乐值字段，通过计算每一天的快乐值均值来观察一段时间的走势，能够更好地发现自己的情绪。&lt;/p>
+&lt;p>
+
+
+
+
+
+
+
+
+
+
+&lt;figure class="">
+
+ &lt;div>
+ &lt;img loading="lazy" alt="notion calendar" src="https://ulipic-1258663779.cos.ap-shanghai.myqcloud.com/ulog/%E6%88%AA%E5%B1%8F2024-11-20%2018.49.17.png">
+ &lt;/div>
+
+ 
+&lt;/figure>&lt;/p>
 &lt;p>由于 notion 的限制，目前还有一些缺陷：&lt;/p>
 &lt;ul>
 &lt;li>notion calendar 无法编辑数据库中事件的类型，也无法根据类型显示颜色。&lt;/li>
