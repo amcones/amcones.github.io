@@ -1,0 +1,41 @@
+<!doctype html><html lang=zh-CN dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width"><link rel=icon type=image/png href=/favicon-96x96.png sizes=96x96><link rel=icon type=image/svg+xml href=/favicon.svg><link rel="shortcut icon" href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><meta name=apple-mobile-web-app-title content="Uli's blog"><link rel=manifest href=/site.webmanifest><script>document.addEventListener("copy",function(e){const t=window.getSelection().toString(),n=`
+
+来源：amcones.cn  
+本文以 CC-BY-NC 4.0 协议共享，转载请注明出处
+`;e.clipboardData.setData("text/plain",t+n),e.preventDefault()})</script><meta name=description content><title>浅谈点积 | uli's blog
+</title><link rel=canonical href=/posts/%E6%B5%85%E8%B0%88%E7%82%B9%E7%A7%AF/><meta property="og:url" content="/posts/%E6%B5%85%E8%B0%88%E7%82%B9%E7%A7%AF/"><meta property="og:site_name" content="uli's blog"><meta property="og:title" content="浅谈点积"><meta property="og:description" content="寻觅那被忽视的运算"><meta property="og:locale" content="zh_CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2024-12-28T09:22:07+08:00"><meta property="article:modified_time" content="2024-12-28T10:26:54+08:00"><link rel=stylesheet href=/assets/combined.min.6efbad4572bc0b89f251dc05da938f779f0a7b1916fad60c50aa0cec40b677aa.css media=all></head><body class=auto><div class=content><header><div class=header><h1 class=header-title><a href=/>uli's blog</a></h1><div class=flex><p class=small><a href=/>/主页</a></p><p class=small><a href=/posts>/文章</a></p><p class=small><a href=/friends>/朋友</a></p><p class=small><a href=/about>/关于</a></p></div></div></header><main class=main><div class=breadcrumbs><a href=/>Home</a>
+<span class=breadcrumbs-separator>> </span><a href=/posts/>Posts</a>
+<span class=breadcrumbs-separator>> </span><a class=breadcrumbs-current href=/posts/%E6%B5%85%E8%B0%88%E7%82%B9%E7%A7%AF/>浅谈点积</a></div><div class=autonumber><div class=single-intro-container><h1 class=single-title>浅谈点积</h1><p class=single-summary>寻觅那被忽视的运算</p><p class=single-readtime><time datetime=2024-12-28T09:22:07+08:00>2024/12/28 09:22</time>
+(Modified: <time datetime=2024-12-28T10:26:54+08:00>2024/12/28 10:26</time>)
+&nbsp; · &nbsp;
+1 min read</p></div><div class=single-content><p>每个学过向量的人必定都学过点积。在中学，点积为 0 向量垂直的结论也是一大解题利器。我们要么将其视为类似加减乘除的运算，完全相信，也可以视其为巧合，完全不信。</p><p>本文结合 3b1b 的《线性代数的本质》，浅谈向量定义背后的对偶性。</p><h2 id=定义>定义</h2><p>点积又称数量积，从几何角度来说，点积就是将一个向量在另一个向量上的投影长度与另一个向量长度相乘。</p><p>$$
+\vec{a}\cdot\vec{b} = ||a||\cdot||b||\cos{\theta}
+$$</p><p>从代数角度来说，点积就是将两个向量对应位置上的数字两两相乘再相加。</p><p>$$
+\begin{bmatrix}
+a_1 \\
+a_2 \\
+\dotsb \\
+a_n
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+b_1 \\
+b_2 \\
+\dotsb \\
+b_n
+\end{bmatrix}
+= a_1\cdot b_1 + \dotsb + a_n\cdot b_n
+$$</p><h2 id=冰山之下>冰山之下</h2><p>你可能跟我一样，在初学时就有了两个问题：</p><ol><li>为什么投影的顺序可交换？</li><li>数字相乘再相加与投影有什么关系？</li></ol><p>对我来说，第一个问题不难理解。假如两个向量长度相同，那么它们关于夹角的角平分线对称，它们的投影也对称。而当长度不相同时，虽然没有对称性，但是投影的长度与原向量的长度是成正比的，点积也只是在前面乘一个系数。从代数角度来说，就更只是一个简单的移项。</p><p>重点是第二个问题，我此前从未搞清楚这一点，只是将其视为某种我不理解的巧合。事实上，这是因为点积可以被看作是一种 <strong>将空间压缩到一维数轴的线性变换</strong>。</p><p>既然提及线性变换，自然就会想到矩阵，而 <strong>将空间压缩到一维</strong> 对应的变换矩阵就是 $1 \times n$ 的矩阵。$1 \times n$ 的矩阵是不是就像一个躺倒的 $n$ 维向量？</p><p>$$
+\begin{bmatrix}
+a_1 & a_2 &\dotsb &amp;a_n
+\end{bmatrix}
+\begin{bmatrix}
+b_1 \\
+b_2 \\
+\dotsb \\
+b_n
+\end{bmatrix}
+= a_1\cdot b_1 + \dotsb + a_n\cdot b_n
+$$</p><p>我们知道，一个线性变换只与基向量的变换有关，那么我们要求这个变换矩阵，就是求变换后基向量的位置。如果在某个线性变换后空间压缩成了一维数轴，那么 <strong>基向量就变成了它们在数轴上的投影</strong>。而由于对称性，基向量在数轴上的投影就等于数轴上的单位向量向原来的基向量上的投影，这恰好就是数轴上单位向量的横纵坐标。综上所述，变换矩阵在数值上就等于变换后数轴上的单位向量的转置。</p><p>至此，你可以选择将向量点积看作是矩阵乘法的另一种写法，但是对我而言它蕴涵了一个深刻的认识，就是 <strong>向量是线性变换的载体</strong>。如果我们看到一个将空间压缩到一维的线性变换，空间中会存在唯一的向量与之相关。简单来说，向量就代表了一个变换，这种表示比矩阵要更容易记住，因为想象空间中的一个箭头比想象整个空间的变换要容易。</p><p>而这种自然而又出乎意料的对应关系就称为 <strong>对偶性(duality)</strong>。</p><h2 id=柯西不等式>柯西不等式</h2><p>$$
+(a_1^2+a_2^2+\dotsb+a_n^2)(b_1^2+b_2^2+\dotsb+b_n^2)\geqslant(a_1b_1+a_2b_2+\dotsb+a_nb_n)^2
+$$</p><p>为什么要把这个看起来奇怪的不等式放在点积的文章当中？因为它是由点积推导出来的。</p><p>它的意义是 $||\vec{a}||\cdot||\vec{b}||\geqslant||\vec{a}\cdot \vec{b}||$。由于 $\vec{a}\cdot\vec{b}=||\vec{a}||\cdot||\vec{b}||\cos{\theta}$，$\cos{\theta}\in[-1,1]$，所以上述不等式得证。</p><p>显然，等号成立当且仅当两向量共线。</p></div><div class=single-pagination><hr><div class=flex><div class=single-pagination-prev><div class=single-pagination-container-prev><div class=single-pagination-text>←</div><div class=single-pagination-text><a href=/posts/%E9%87%8D%E6%96%B0%E8%AE%A4%E8%AF%86-notion/>重新认识 Notion</a></div></div></div><div class=single-pagination-next></div></div><hr></div><div class=back-to-top><a href=#top>back to top</a></div><script src=https://giscus.app/client.js data-repo=amcones/amcones.github.io data-repo-id=R_kgDONNHtbw data-category data-category-id=DIC_kwDONNHtb84CkJ6n data-mapping=title data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=top data-theme=preferred_color_scheme data-lang=en data-loading=lazy crossorigin=anonymous async></script></div></main></div><footer><p style=text-align:center>powered by <a href=https://gohugo.io/>hugo</a> & <a href=https://github.com/tomfran/typo>typo</a> theme<br><a href=https://creativecommons.org/licenses/by-nc/4.0/deed.en>CC-BY-NC 4.0</a>｜2019 - 2024 ©<a href=https://github.com/amcones>amcones</a> All rights reserved.｜<a href=https://beian.miit.gov.cn/#/Integrated/index>沪icp备20007771号-2</a></p><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js onload=renderMathInElement(document.body)></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}]})})</script></footer></body><script>function isAuto(){return document.body.classList.contains("auto")}function setTheme(){if(!isAuto())return;document.body.classList.remove("auto");let e="light";window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches&&(e="dark"),document.body.classList.add(e)}function invertBody(){document.body.classList.toggle("dark"),document.body.classList.toggle("light")}isAuto()&&window.matchMedia("(prefers-color-scheme: dark)").addListener(invertBody),setTheme()</script></html>
