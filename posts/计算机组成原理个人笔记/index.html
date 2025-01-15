@@ -1,0 +1,58 @@
+<!doctype html><html lang=zh-CN dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width"><link rel=icon type=image/png href=/favicon-96x96.png sizes=96x96><link rel=icon type=image/svg+xml href=/favicon.svg><link rel="shortcut icon" href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><meta name=apple-mobile-web-app-title content="Uli's blog"><link rel=manifest href=/site.webmanifest><script>document.addEventListener("copy",function(e){const t=window.getSelection().toString(),n=`
+
+来源：amcones.cn  
+本文以 CC-BY-NC 4.0 协议共享，转载请注明出处
+`;e.clipboardData.setData("text/plain",t+n),e.preventDefault()})</script><meta name=description content><title>计算机组成原理个人笔记 | uli's blog
+</title><link rel=canonical href=/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/><meta property="og:url" content="/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/"><meta property="og:site_name" content="uli's blog"><meta property="og:title" content="计算机组成原理个人笔记"><meta property="og:description" content="快要考计组了，然而才刚刚开始学。虽然看上去很繁杂（确实也挺繁杂），不过似乎可以提炼出几个关键的知识点（来应付考试）。在这里记录下这些关键点和做题方法。"><meta property="og:locale" content="zh_CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-01-15T23:37:30+08:00"><meta property="article:modified_time" content="2025-01-15T23:39:06+08:00"><link rel=stylesheet href=/assets/combined.min.6efbad4572bc0b89f251dc05da938f779f0a7b1916fad60c50aa0cec40b677aa.css media=all></head><body class=auto><div class=content><header><div class=header><h1 class=header-title><a href=/>uli's blog</a></h1><div class=flex><p class=small><a href=/>/主页</a></p><p class=small><a href=/posts>/文章</a></p><p class=small><a href=/friends>/朋友</a></p><p class=small><a href=/about>/关于</a></p></div></div></header><main class=main><div class=breadcrumbs><a href=/>Home</a>
+<span class=breadcrumbs-separator>> </span><a href=/posts/>Posts</a>
+<span class=breadcrumbs-separator>> </span><a class=breadcrumbs-current href=/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/>计算机组成原理个人笔记</a></div><div class=autonumber><div class=single-intro-container><h1 class=single-title>计算机组成原理个人笔记</h1><p class=single-summary>快要考计组了，然而才刚刚开始学。虽然看上去很繁杂（确实也挺繁杂），不过似乎可以提炼出几个关键的知识点（来应付考试）。在这里记录下这些关键点和做题方法。</p><p class=single-readtime><time datetime=2025-01-15T23:37:30+08:00>2025/01/15 23:37</time>
+(Modified: <time datetime=2025-01-15T23:39:06+08:00>2025/01/15 23:39</time>)
+&nbsp; · &nbsp;
+2 min read</p></div><div class=single-content><h2 id=前言>前言</h2><p>快要考计组了，然而才刚刚开始学。虽然看上去很繁杂（确实也挺繁杂），不过似乎可以提炼出几个关键的知识点（来应付考试）。在这里记录下这些关键点和做题方法。</p><h2 id=第一章>第一章</h2><h3 id=概要>概要</h3><p>这一章主要是讲了计算机史和计算机的<strong>性能指标</strong>。</p><h3 id=考点>考点</h3><h4 id=1-时钟周期>1. 时钟周期</h4><p>最小的，最基本的时间单位，在一个时钟周期内CPU仅完成一个最基本动作。是时钟频率的倒数。
+$$
+f=1GHz(10^9Hz),T=1ns
+$$</p><h4 id=2-cpi>2. CPI</h4><p>执行每条指令的<strong>平均时钟周期数</strong>。</p><p>设程序的总指令数为$IC$， 程序执行所需的时钟周期数为$m$，时钟周期为$T$，频率为$f$，那么：
+$$
+CPI = \frac{m}{IC}
+$$
+如果对于一个程序中的每一<strong>类</strong>指令分别给出它的$CPI_i$和使用频率$P_i$，每类指令的条数$IC_i$，那么$CPI$可以表示为：
+$$
+CPI = \sum_{i=1}^n(CPI_i \times P_i)=\sum_{i=1}^n(CPI_i \times \frac{IC_i}{IC})
+$$</p><h4 id=3-cpu时间>3. CPU时间</h4><p>执行一段程序要花费的<strong>时间</strong>。某段程序的CPU时间$T_{CPU}$可以表示为
+$$
+T_{CPU} = CPI \times IC \times T = \frac{CPI \times IC}{f}
+$$
+常用于衡量优化成功与否，程序运行快慢等。</p><h4 id=4-ipc>4. IPC</h4><p>$$
+IPC=\frac{1}{CPI}
+$$</p><h4 id=5-mips>5. MIPS</h4><p>每秒百万条指令，可以作为衡量计算机性能的指标。
+$$
+MIPS = \frac{f}{CPI}=IPC \times f
+$$</p><h4 id=6-mflops>6. MFLOPS</h4><p>每秒百万次浮点运算。
+$$
+MFLOPS=\frac{IC_{flops}}{T_{CPU}\times10^6}
+$$</p><h2 id=第二章>第二章</h2><h3 id=概要-1>概要</h3><p>这章主要讲了数据在计算机中的表示。</p><h3 id=考点-1>考点</h3><h4 id=1-数的机器码表示>1. 数的机器码表示</h4><p>由符号和数值一起编码表示的二进制数称为机器数或<strong>机器码</strong>。</p><p>原码：数的符号化表示，在开头加上一个符号位。表示直观，但运算复杂，故在计算机中只用于表示浮点数的尾码。</p><p>反码：也称<strong>1的补码</strong>（因为反码和原码相加各位均为1），数值上满足：
+$$
+[x]_\text{反}=\begin{cases}
+x &{0 \leqslant x \lt 2^n}\
+(2^{n+1}-1)+x &{-2^n\lt x\leqslant 0}
+\end{cases}
+$$
+即<strong>正数的反码等于原码，负数的反码等于原码按位取反（符号位除外）</strong>。</p><p>加法时符号位可以直接参与运算，做减法时将被减数的反码加上减数负数的反码即可。但由于要循环进位，仍没有用于计算机。</p><p><strong>补码</strong>：也称<strong>模2的补码</strong>。（因为补码和原码相加为2的次幂，即除最高位其它均为0）</p><p>由于模的一些性质，补码的符号位可以直接参与运算，符号位的进位作为模被自动舍弃，减法也可以转换为加法。</p><p>补码规则：原码大于0时等于原码，小于等于0时，真值加上模数就是补码。（<strong>模数在计算机中常常为字长</strong>）</p><blockquote><p>eg: 设某计算机字长为8位，求真值 $x=-(10101)<em>2$的补码。
+$x</em>{补}=2^8+(-10101)=1110 1011(\mod 2^8)$</p></blockquote><p>计算时有两种快速方法：</p><ol><li>反码法：当$x \lt 0$时，补码等于反码+1。适合用于硬件</li><li>扫描法：当$x\lt 0$时，对真值从右往左扫描，第一个1和右边的0不变，剩下的全部取反。已知补码求原码也一样。</li></ol><p>变形补码：也称“模4补码”，由于有两个符号位，除了表示正负还可以表示正溢出负溢出。但因为成本问题依然没有采用。</p><p>移码：只用于定点整数表示，编码方式是给真值加上一个常数偏移量。主要应用在浮点数表示上。</p><h4 id=2-浮点数的表示><strong>2. 浮点数的表示</strong></h4><p>任何一个二进制数$N$可表示为：
+$$
+N=2^E \times M = 2^{\pm e}\times (\pm 0.m)
+$$
+类似于十进制科学计数法。</p><p>由于$0.01111 \times 2^{101}$还可以表示为$0.1111 \times 2^{100}$，为了统一就需要规格化。常用的标准化有让尾数绝对值大于等于$(0.1)<em>2$即$(0.5)</em>{10}$。还有一种参考了十进制科学计数法的是让尾数绝对值在$(1,2)$之间。这样使得最高位始终为1，就可以隐藏。</p><p>应用最为广泛的标准就是$IEEE754$。该标准主要包括32位和64位浮点数，分别对应C语言float和double。</p><p>单精度浮点数的阶码8位，双精度11位，都有1位符号位，剩下的都用于表示尾数。</p><p>$$
+N=(-1)^s\times2^{E-127}\times 1.M
+$$</p><p>浮点数和十进制之间互相转化时，<strong>都是展开成32位二进制，提取阶码</strong>，确定了小数点位置后再处理尾数和符号就可以了。</p><h4 id=3数据校验>3.数据校验</h4><p>两个编码对应二进制位不同的个数称为<strong>码距</strong>，又称<strong>海明距离</strong>。码距越大，抗干扰能力、纠错能力越强，但编码效率越低。</p><p>根据信息论原理，码距$d$与校验码的检错和纠错能力的关系如下：
+$$
+\begin{cases}
+d \geqslant e+1 &可检验e个错误\
+d \geqslant 2t+1 &可纠正t个错误\
+d\geqslant e+t+1 \And e\gt t &可检测e个错误并纠正t个错误
+\end{cases}
+$$</p><p>通过在原始数据中引入一部分冗余信息用于校验，利用数据整体的性质去检错甚至矫正错误。</p><p>最基本的思想是奇偶校验。通过<strong>在最后添加1位</strong>作为校验位，要求校验位加上有效信息中的1的数量是偶数，那么接收方通过判断1的数量就可以知道是否出现了奇数位错误。当然，对于偶数位错是无法得知的。</p><p>在奇偶校验上发展出了交叉奇偶校验，<strong>海明码</strong>也是基于此的一种多重奇偶校验。</p><h5 id=海明码>海明码</h5><p>由于特别重要，所以单独拆开讲。</p><p>通过在2的次幂位置放入校验码，对各自管辖的分区进行多次奇偶校验，即可一步步二分缩小错误的范围。扩展海明码在第一位加入一个校验码对整体进行奇偶校验，从而检验是否两位错。</p><p>从本质上来说，多次奇偶校验的每一次，都是在<strong>询问校验码对应二进制位置上的那一位是否出错。</strong> 如1（0001）询问的是最低位是否出错，2（0010）询问的是倒数第二位是否出错，4（0100）询问第二位。。。这种神奇的性质来源于位置与二进制性质的配合。</p><p>多次奇偶校验便于硬件实现，而在计算时，利用二进制性质，可以简单地将所有<strong>有效信息为1的位置编码异或</strong>，得到的结果就是出错的位置。</p><p>一行Python实现海明码：</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Python data-lang=Python><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>lambda</span> x, y: x ^ y, [i <span style=font-weight:700;text-decoration:underline>for</span> (i,b) <span style=font-weight:700>in</span> <span style=font-weight:700;font-style:italic>enumerate</span>(bits) <span style=font-weight:700;text-decoration:underline>if</span> b]
+</span></span></code></pre></div><blockquote><p>海明码的校验位只需要$\log_2n$个，通过校验更大的数据量可以让冗余度无限接近0。但这样由于出错率上升，所以要找到一个冗余度与错误率的平衡。更近一步的，由于实际生活中出错很有可能是连续的一块，所以可以采用<strong>交织编码</strong>方便应用海明码。
+海明发明海明码是经过了深思熟虑和多方面的思考。虽然它的原理看上去十分简单，但得到它并不容易。
+Luck favors a prepared mind.</p></blockquote><h5 id=crc循环冗余校验>CRC循环冗余校验</h5><p>一种基于模2运算建立编码规则的校验码。</p><p>具体来说，给定一个生成多项式，然后根据多项式的系数得到一个二进制除数，在原信息后添加除数长度$r$个0后进行模2除（即每步进行异或），最后得到一个$r-1$位的校验和。把校验和放在原信息的最后，就是带有CRC校验的数据。检验出错时，只需要判断它能否被生成多项式整除即可。</p><p>实际上，CRC也能够纠正错误。由于二进制的位独立性，异或满足结合律，所以模2除法满足结合律。那么就可以把出错的那一位通过补0作除法拆分出去。由于CRC编码的非0余数具有循环特性，那么通过对余数循环做除法，就能知道出错的位置。</p><h2 id=第三章>第三章</h2><h3 id=概要-2>概要</h3><h2 id=第四章>第四章</h2><h3 id=概要-3>概要</h3><p>本章介绍了存储系统。</p><h2 id=第五章>第五章</h2><h3 id=概要-4>概要</h3><p>本章介绍了指令系统。</p><h3 id=考点-2>考点</h3><h4 id=编址>编址</h4><p>一条指令有两部分组成：地址码（A，操作数）和操作码（OP）
+定长操作码和扩展操作码：四、三、二、一、零地址操作码</p><h4 id=寻址>寻址</h4><p>指令寻址：（用指令去控制寻址）</p><ol><li>顺序寻址 PC自动自增执行下一条指令</li><li>跳转寻址 跳转指令 更改PC寄存器</li></ol><p>数据寻址：（用数据去控制寻址）</p><ol><li>立即寻址 操作数直接写在指令里，叫做立即数</li><li>直接寻址 指令给出操作数存放的位置</li><li>间接寻址 指令给出存放了有效位置的位置</li><li>寄存器寻址 指令给出存操作数的寄存器</li><li>寄存器间接寻址 指令给出存放操作数地址的寄存器</li><li>隐藏寻址 另一个操作数隐藏在指令中，比如在ACC</li></ol><p>偏移寻址：（用寄存器中的值加上指令中的形式地址来寻址）</p><ol><li>基址寻址 用基址BR寄存器或通用寄存器，面向操作系统</li><li>变址寻址 用变址IX寄存器或通用寄存器，面向用户</li><li>相对寻址 对PC加上偏移量</li></ol><p>堆栈寻址： （操作数存在堆栈中，用SP寄存器存栈顶地址）</p><h2 id=第六章>第六章</h2><h3 id=概要-5>概要</h3><p>本章介绍了CPU，指令流水线等。</p></div><div class=single-pagination><hr><div class=flex><div class=single-pagination-prev><div class=single-pagination-container-prev><div class=single-pagination-text>←</div><div class=single-pagination-text><a href=/posts/%E6%9A%91%E8%AE%AD%E4%B9%8B%E7%BD%9A%E8%AE%AD%E5%A4%A7%E7%A4%BC%E5%8C%85/>暑训之罚训大礼包</a></div></div></div><div class=single-pagination-next><div class=single-pagination-container-next><div class=single-pagination-text><a href=/posts/%E4%BD%BF%E7%94%A8frp%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8A%9E%E5%85%AC%E7%BD%91%E7%BB%9C/>使用frp搭建个人办公网络</a></div><div class=single-pagination-text>→</div></div></div></div><hr></div><div class=back-to-top><a href=#top>back to top</a></div><script src=https://giscus.app/client.js data-repo=amcones/amcones.github.io data-repo-id=R_kgDONNHtbw data-category data-category-id=DIC_kwDONNHtb84CkJ6n data-mapping=title data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=top data-theme=preferred_color_scheme data-lang=en data-loading=lazy crossorigin=anonymous async></script></div></main></div><footer><p style=text-align:center>powered by <a href=https://gohugo.io/>hugo</a> & <a href=https://github.com/tomfran/typo>typo</a> theme<br><a href=https://creativecommons.org/licenses/by-nc/4.0/deed.en>CC-BY-NC 4.0</a>｜2019 - 2024 ©<a href=https://github.com/amcones>amcones</a> All rights reserved.｜<a href=https://beian.miit.gov.cn/#/Integrated/index>沪icp备20007771号-2</a></p><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js onload=renderMathInElement(document.body)></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}]})})</script></footer></body><script>function isAuto(){return document.body.classList.contains("auto")}function setTheme(){if(!isAuto())return;document.body.classList.remove("auto");let e="light";window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches&&(e="dark"),document.body.classList.add(e)}function invertBody(){document.body.classList.toggle("dark"),document.body.classList.toggle("light")}isAuto()&&window.matchMedia("(prefers-color-scheme: dark)").addListener(invertBody),setTheme()</script></html>

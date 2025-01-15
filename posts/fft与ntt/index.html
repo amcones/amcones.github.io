@@ -1,0 +1,52 @@
+<!doctype html><html lang=zh-CN dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width"><link rel=icon type=image/png href=/favicon-96x96.png sizes=96x96><link rel=icon type=image/svg+xml href=/favicon.svg><link rel="shortcut icon" href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><meta name=apple-mobile-web-app-title content="Uli's blog"><link rel=manifest href=/site.webmanifest><script>document.addEventListener("copy",function(e){const t=window.getSelection().toString(),n=`
+
+来源：amcones.cn  
+本文以 CC-BY-NC 4.0 协议共享，转载请注明出处
+`;e.clipboardData.setData("text/plain",t+n),e.preventDefault()})</script><meta name=description content><title>FFT与NTT | uli's blog
+</title><link rel=canonical href=/posts/fft%E4%B8%8Entt/><meta property="og:url" content="/posts/fft%E4%B8%8Entt/"><meta property="og:site_name" content="uli's blog"><meta property="og:title" content="FFT与NTT"><meta property="og:description" content="大家都知道NTT是FFT的优化，实际上也就是将FFT难搞的复数换成原根。这次来仔细分析一下FFT与NTT。（个人向）"><meta property="og:locale" content="zh_CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-01-15T23:33:49+08:00"><meta property="article:modified_time" content="2025-01-15T23:39:06+08:00"><link rel=stylesheet href=/assets/combined.min.6efbad4572bc0b89f251dc05da938f779f0a7b1916fad60c50aa0cec40b677aa.css media=all></head><body class=auto><div class=content><header><div class=header><h1 class=header-title><a href=/>uli's blog</a></h1><div class=flex><p class=small><a href=/>/主页</a></p><p class=small><a href=/posts>/文章</a></p><p class=small><a href=/friends>/朋友</a></p><p class=small><a href=/about>/关于</a></p></div></div></header><main class=main><div class=breadcrumbs><a href=/>Home</a>
+<span class=breadcrumbs-separator>> </span><a href=/posts/>Posts</a>
+<span class=breadcrumbs-separator>> </span><a class=breadcrumbs-current href=/posts/fft%E4%B8%8Entt/>FFT与NTT</a></div><div class=autonumber><div class=single-intro-container><h1 class=single-title>FFT与NTT</h1><p class=single-summary>大家都知道NTT是FFT的优化，实际上也就是将FFT难搞的复数换成原根。这次来仔细分析一下FFT与NTT。（个人向）</p><p class=single-readtime><time datetime=2025-01-15T23:33:49+08:00>2025/01/15 23:33</time>
+(Modified: <time datetime=2025-01-15T23:39:06+08:00>2025/01/15 23:39</time>)
+&nbsp; · &nbsp;
+1 min read</p></div><div class=single-content><p>大家都知道NTT是FFT的优化，实际上也就是将FFT难搞的复数换成原根。这次来仔细分析一下FFT与NTT。（个人向）</p><h2 id=fft>FFT</h2><h3 id=前言>前言</h3><p>又是众所周知，FFT是用来加速二项式乘法的，利用精心构造出的分治算法将复杂度优化到$O(nlogn)$。</p><p>还是众所周知，$FFT=DFT\rightarrow 点值相乘\rightarrow IDFT$，即将多项式的系数表示法转为点值表示法，算完再转回去。</p><p>如果是一般的系数表示法，两个多项式相乘每个系数之间都要乘一次，复杂度显然是$O(nm)$。</p><p>多项式$C$的系数$c_i$满足$c_i=\sum^i_{j=0}a_jb_{i-j}$，这是一个加法形式的卷积。</p><p>假如要求两个$n$次多项式$F(x),G(x)$的积$H(x)$，用点值表示就是
+$$
+(x_0,F_{y_0}\times H_{y_0}),\dots,(x_{2n},F_{y_{2n}}\times G_{y_{2n}})
+$$
+就是横坐标代入两个多项式，纵坐标就是两个系数的积。</p><p>回顾一个东西叫<strong>单位根</strong>，也就是在复平面上单位圆上的所有复数。由于所有单位根的模长都为1，所以两个单位根相乘所得复数仍在单位圆上，也就是仍为单位根。而一个$n-1$次多项式的单位根就是满足$x^n=1$的复数$x$。</p><p>假设$n$个单位根，幅角都为$\frac{1}{n}\times 360^\circ$。用$\omega^i_n$表示$n$次单位根中幅角为$\frac{1}{n}\times 360^\circ$的单位根，可以得到以下性质。
+$$
+\begin{align*}
+\omega^k_n&=\omega_n^{k \bmod n} \\
+\omega^{2k}_{2n}&=\omega^k_n \\
+\omega^j_n\times\omega^k_n&=\omega^{j+k}_n \\
+(\omega^j_n)^k&=\omega^{jk}_n \\
+(\omega^k_n)^{-1}&=\omega^{-k}_n=\omega^{n-k}_n \\
+\omega^{\frac{n}{2}}_n&=-1 \\
+\omega^{\frac{n}{2}+k}_n&=\omega^k_n\times \omega^{\frac{n}{2}}_n=-\omega^k_n
+\end{align*}
+$$
+每个单独看都很简单，跟离散一样，放在一起就头疼了。还好只要知道怎么用这些性质推FFT就行了。</p><h3 id=dft>DFT</h3><p>将特殊的$x$代入两个多项式进行计算，就可以消掉很多项。每次代入不同的$x$就能消去不同的项，从而加速计算。而在FFT中就是代入$\omega_n^k$。</p><p>首先将多项式按奇偶分组，将奇数组提出一个$x$就可以得到两边是一样的次数，但系数被分到两边。</p><p>对两个分组分别建立新的函数去表示原函数，得到</p><p>$$
+f(x)=G(x^2)
++x\times H(x^2)
+$$</p><p>显然$G(x),H(x)$是偶函数，利用单位根性质$\omega^{\frac{n}{2}+k}_n=-\omega^k_n$可以得到$\omega^k_n$和$\omega^{k+\frac{n}{2}}_n$的$G(x^2),H(x^2)$对应相等。</p><p>偷个懒，把这两个单位根代入$f(x)$就可以得到范围缩小的表达式。
+$$
+f(\omega^k_n)=G(\omega^k_{\frac{n}{2}})+\omega^k_n\times H(\omega^k_{\frac{n}{2}})
+$$
+$$
+f(\omega_n^{k+\frac{n}{2}})=G(\omega^k_{\frac{n}{2}})-\omega^k_n\times H( \omega^k_{\frac{n}{2}})
+$$</p><p>对$G(x),H(x)$分别递归即可。</p><p>使用前须将多项式补成$2^m$项形式以满足单位根性质。</p><h3 id=位逆序置换bit-reversal-permutation也称蝴蝶变换>位逆序置换（bit-reversal permutation），也称蝴蝶变换</h3><p>为了优化递归的内存，先模拟递归在原数组中拆分系数，再倍增合并算出来的值。</p><p>可以发现规律原序列每个数用二进制表示，翻转后就是最终的位置。</p><p>有$O(n)$实现的技巧，就记个板子吧。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#888;font-style:italic>// 同样需要保证 len 是 2 的幂
+</span></span></span><span style=display:flex><span><span style=color:#888;font-style:italic>// 记 rev[i] 为 i 翻转后的值
+</span></span></span><span style=display:flex><span><span style=color:#888;font-style:italic></span><span style=font-weight:700;text-decoration:underline>void</span> <span style=color:#666;font-weight:700;font-style:italic>change</span>(Complex y[], <span style=font-weight:700;text-decoration:underline>int</span> len) {
+</span></span><span style=display:flex><span>  <span style=font-weight:700;text-decoration:underline>for</span> (<span style=font-weight:700;text-decoration:underline>int</span> i = 0; i &lt; len; ++i) {
+</span></span><span style=display:flex><span>    rev[i] = rev[i &gt;&gt; 1] &gt;&gt; 1;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>if</span> (i &amp; 1) {  <span style=color:#888;font-style:italic>// 如果最后一位是 1，则翻转成 len/2
+</span></span></span><span style=display:flex><span><span style=color:#888;font-style:italic></span>      rev[i] |= len &gt;&gt; 1;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>  <span style=font-weight:700;text-decoration:underline>for</span> (<span style=font-weight:700;text-decoration:underline>int</span> i = 0; i &lt; len; ++i) {
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>if</span> (i &lt; rev[i]) {  <span style=color:#888;font-style:italic>// 保证每对数只翻转一次
+</span></span></span><span style=display:flex><span><span style=color:#888;font-style:italic></span>      swap(y[i], y[rev[i]]);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>  <span style=font-weight:700;text-decoration:underline>return</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=idft>IDFT</h3><p>数学证明比较复杂就不证了，反正就是把$\omega^k_n$转为$\omega^{-k}_n$再除以$n$就行了。</p><h2 id=ntt>NTT</h2><p>解决多项式乘法带模数的情况，因为复数无法取模，所以需要改为原根。</p><p>今天主要解决原根是如何取代单位根的问题。</p><p>显然，原根需要满足单位根的几条性质。</p><p>原根：对于一个素数$P$，若有一个数$G$使得$G^1,G^2,G^3,\dots,G^{p-2}(\mod P)$互不相同，则$G$是$P$的一个原根。</p><p>懒得证明了，深入讨论原根性质都要跑到群论去了。</p><h2 id=结语>结语</h2><p>应该不会有改算法内部的题目，主要考察运用。目前还没有遇到过什么题可以自己想到要用NTT，慢慢积累吧。</p></div><div class=single-pagination><hr><div class=flex><div class=single-pagination-prev><div class=single-pagination-container-prev><div class=single-pagination-text>←</div><div class=single-pagination-text><a href=/posts/%E6%B5%85%E8%B0%88%E7%82%B9%E7%A7%AF/>浅谈点积</a></div></div></div><div class=single-pagination-next><div class=single-pagination-container-next><div class=single-pagination-text><a href=/posts/lca%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/>LCA算法总结</a></div><div class=single-pagination-text>→</div></div></div></div><hr></div><div class=back-to-top><a href=#top>back to top</a></div><script src=https://giscus.app/client.js data-repo=amcones/amcones.github.io data-repo-id=R_kgDONNHtbw data-category data-category-id=DIC_kwDONNHtb84CkJ6n data-mapping=title data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=top data-theme=preferred_color_scheme data-lang=en data-loading=lazy crossorigin=anonymous async></script></div></main></div><footer><p style=text-align:center>powered by <a href=https://gohugo.io/>hugo</a> & <a href=https://github.com/tomfran/typo>typo</a> theme<br><a href=https://creativecommons.org/licenses/by-nc/4.0/deed.en>CC-BY-NC 4.0</a>｜2019 - 2024 ©<a href=https://github.com/amcones>amcones</a> All rights reserved.｜<a href=https://beian.miit.gov.cn/#/Integrated/index>沪icp备20007771号-2</a></p><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js onload=renderMathInElement(document.body)></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}]})})</script></footer></body><script>function isAuto(){return document.body.classList.contains("auto")}function setTheme(){if(!isAuto())return;document.body.classList.remove("auto");let e="light";window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches&&(e="dark"),document.body.classList.add(e)}function invertBody(){document.body.classList.toggle("dark"),document.body.classList.toggle("light")}isAuto()&&window.matchMedia("(prefers-color-scheme: dark)").addListener(invertBody),setTheme()</script></html>

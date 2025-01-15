@@ -1,0 +1,395 @@
+<!doctype html><html lang=zh-CN dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width"><link rel=icon type=image/png href=/favicon-96x96.png sizes=96x96><link rel=icon type=image/svg+xml href=/favicon.svg><link rel="shortcut icon" href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><meta name=apple-mobile-web-app-title content="Uli's blog"><link rel=manifest href=/site.webmanifest><script>document.addEventListener("copy",function(e){const t=window.getSelection().toString(),n=`
+
+来源：amcones.cn  
+本文以 CC-BY-NC 4.0 协议共享，转载请注明出处
+`;e.clipboardData.setData("text/plain",t+n),e.preventDefault()})</script><meta name=description content><title>LCA算法总结 | uli's blog
+</title><link rel=canonical href=/posts/lca%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/><meta property="og:url" content="/posts/lca%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"><meta property="og:site_name" content="uli's blog"><meta property="og:title" content="LCA算法总结"><meta property="og:description" content="LCA（最近公共祖先）一般有三种算法解决这类问题。为什么要求树上结点的公共祖先？这是由于求解树上两点间最近距离、以及做树上差分等问题时需要。（其它得做题才知道）"><meta property="og:locale" content="zh_CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-01-15T23:34:22+08:00"><meta property="article:modified_time" content="2025-01-15T23:39:06+08:00"><link rel=stylesheet href=/assets/combined.min.6efbad4572bc0b89f251dc05da938f779f0a7b1916fad60c50aa0cec40b677aa.css media=all></head><body class=auto><div class=content><header><div class=header><h1 class=header-title><a href=/>uli's blog</a></h1><div class=flex><p class=small><a href=/>/主页</a></p><p class=small><a href=/posts>/文章</a></p><p class=small><a href=/friends>/朋友</a></p><p class=small><a href=/about>/关于</a></p></div></div></header><main class=main><div class=breadcrumbs><a href=/>Home</a>
+<span class=breadcrumbs-separator>> </span><a href=/posts/>Posts</a>
+<span class=breadcrumbs-separator>> </span><a class=breadcrumbs-current href=/posts/lca%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/>LCA算法总结</a></div><div class=autonumber><div class=single-intro-container><h1 class=single-title>LCA算法总结</h1><p class=single-summary>LCA（最近公共祖先）一般有三种算法解决这类问题。为什么要求树上结点的公共祖先？这是由于求解树上两点间最近距离、以及做树上差分等问题时需要。（其它得做题才知道）</p><p class=single-readtime><time datetime=2025-01-15T23:34:22+08:00>2025/01/15 23:34</time>
+(Modified: <time datetime=2025-01-15T23:39:06+08:00>2025/01/15 23:39</time>)
+&nbsp; · &nbsp;
+4 min read</p></div><div class=single-content><p>LCA（最近公共祖先）一般有三种算法解决这类问题。为什么要求树上结点的公共祖先？这是由于求解树上两点间最近距离、以及做树上差分等问题时需要。（其它得做题才知道）</p><h2 id=向上标记法>向上标记法</h2><p>这是最容易理解的一种做法，时间复杂度$O(n)$，在多次查询时就不够用了，所以很少用。思想就是从要查询的点向上标记直到根节点，再从另一点出发向上标记，直到标记重合，那个点就是LCA。</p><h2 id=倍增lca在线>倍增LCA（在线）</h2><p>使用ST表的倍增思想和dp（ST表本来就是dp）优化向上跳的速度，时间复杂度预处理$O(nlogn)$+查询$O(logn)$。
+先用一次bfs（不用dfs因为递归容易爆栈）预处理所有结点向上跳2^k的父亲结点是谁（使用dp）。<br>然后使用LCA算法，不妨设a结点更深，先将a结点向上跳到和b一样高，此时如果a与b是同一个结点则这个点就是LCA，否则他们就是同一深度不同的两点。<br>此时再让他们一起向上跳，加上约束条件：他们向上跳的父节点不同。因为第一个出现父节点相同的可能只是公共祖先而不是最近公共祖先，那么只要父节点不同就是还没跳到LCA。循环结束后保证俩个结点的父节点就是LCA。
+为什么能确保循环结束后父节点是LCA？因为满足条件时，两个点一起向上跳2^k。众所周知，任何一个十进制正数都能被表示为数个2^k的和。（十进制的二进制表示）那么，如果跳过根节点了，那么他们的父节点都为0不满足约束条件，不跳；如果跳过LCA了，他们的父节点必是一个点（因为经过LCA后，必定跳的位置在同一条子链上）；因此满足约束条件，必定是在LCA下方。此时使用二进制拼凑，得到两个结点的深度与LCA深度的差就是找到了。同时不直接跳到LCA也是由于这个约束条件的关系，更根本的原因其实是约束条件是判断LCA把两个子树合并在一起的性质是否满足（我是这么认为的）。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#888;font-weight:700>#include&lt;iostream&gt;
+</span></span></span><span style=display:flex><span><span style=color:#888;font-weight:700>#include&lt;algorithm&gt;
+</span></span></span><span style=display:flex><span><span style=color:#888;font-weight:700>#include&lt;cstring&gt;
+</span></span></span><span style=display:flex><span><span style=color:#888;font-weight:700>#include&lt;queue&gt;
+</span></span></span><span style=display:flex><span><span style=color:#888;font-weight:700></span><span style=font-weight:700;text-decoration:underline>using</span> <span style=font-weight:700;text-decoration:underline>namespace</span> std;
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>const</span> <span style=font-weight:700;text-decoration:underline>int</span> maxn=4e4+10;
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>int</span> dep[maxn],fa[maxn][20];
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>int</span> head[maxn],tot;
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>struct</span> <span style=color:#666;font-weight:700;font-style:italic>edge</span>{
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>int</span> to,next;
+</span></span><span style=display:flex><span>}eg[maxn&lt;&lt;1];
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>void</span> <span style=color:#666;font-weight:700;font-style:italic>add</span>(<span style=font-weight:700;text-decoration:underline>int</span> u,<span style=font-weight:700;text-decoration:underline>int</span> v)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    eg[tot].to=v;
+</span></span><span style=display:flex><span>    eg[tot].next=head[u];
+</span></span><span style=display:flex><span>    head[u]=tot++;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>void</span> <span style=color:#666;font-weight:700;font-style:italic>bfs</span>(<span style=font-weight:700;text-decoration:underline>int</span> s)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    memset(dep,0x3f,<span style=font-weight:700;text-decoration:underline>sizeof</span> dep);
+</span></span><span style=display:flex><span>    dep[0]=0,dep[s]=1;
+</span></span><span style=display:flex><span>    queue&lt;<span style=font-weight:700;text-decoration:underline>int</span>&gt;q;
+</span></span><span style=display:flex><span>    q.push(s);
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>while</span>(!q.empty())
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>int</span> t=q.front();
+</span></span><span style=display:flex><span>        q.pop();
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=head[t];~i;i=eg[i].next)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=font-weight:700;text-decoration:underline>int</span> j=eg[i].to;
+</span></span><span style=display:flex><span>            <span style=font-weight:700;text-decoration:underline>if</span>(dep[j]&gt;dep[t]+1){
+</span></span><span style=display:flex><span>                dep[j]=dep[t]+1;
+</span></span><span style=display:flex><span>                q.push(j);
+</span></span><span style=display:flex><span>                fa[j][0]=t;
+</span></span><span style=display:flex><span>                <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> k=1;k&lt;=15;k++)fa[j][k]=fa[fa[j][k-1]][k-1];
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>int</span> <span style=color:#666;font-weight:700;font-style:italic>lca</span>(<span style=font-weight:700;text-decoration:underline>int</span> a, <span style=font-weight:700;text-decoration:underline>int</span> b)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>if</span> (dep[a] &lt; dep[b]) swap(a, b);
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span> (<span style=font-weight:700;text-decoration:underline>int</span> k = 15; k &gt;= 0; k -- )
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>if</span> (dep[fa[a][k]] &gt;= dep[b])
+</span></span><span style=display:flex><span>            a = fa[a][k];
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>if</span> (a == b) <span style=font-weight:700;text-decoration:underline>return</span> a;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span> (<span style=font-weight:700;text-decoration:underline>int</span> k = 15; k &gt;= 0; k -- )
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>if</span> (fa[a][k] != fa[b][k])
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            a = fa[a][k];
+</span></span><span style=display:flex><span>            b = fa[b][k];
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>return</span> fa[a][0];
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>int</span> <span style=color:#666;font-weight:700;font-style:italic>main</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    memset(head,-1,<span style=font-weight:700;text-decoration:underline>sizeof</span> head);
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>int</span> n;
+</span></span><span style=display:flex><span>    cin&gt;&gt;n;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>int</span> a,b,root=0;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=1;i&lt;=n;i++){
+</span></span><span style=display:flex><span>        cin&gt;&gt;a&gt;&gt;b;
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>if</span>(b==-1)root=a;
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>else</span> add(a,b),add(b,a);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    bfs(root);
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>int</span> m,x,y;
+</span></span><span style=display:flex><span>    cin&gt;&gt;m;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=1;i&lt;=m;i++){
+</span></span><span style=display:flex><span>        cin&gt;&gt;x&gt;&gt;y;
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>int</span> ans=lca(x,y);
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>if</span>(ans==x)cout&lt;&lt;1&lt;&lt;endl;
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>else</span> <span style=font-weight:700;text-decoration:underline>if</span>(ans==y)cout&lt;&lt;2&lt;&lt;endl;
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>else</span> cout&lt;&lt;0&lt;&lt;endl;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>return</span> 0;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=tarjan离线>Tarjan（离线）</h2><p>需要注意的是这里的Tarjan算法是指离线求LCA的一种做法，而不是著名的求强连通分量的那个Tarjan。
+时间复杂度$O(n+m)$,需要存下所有询问。至于和倍增写法的适用差别尚不明确，时间复杂度其实差的也不多？不过听说常数小一点。
+Tarjan是基于dfs的算法，在搜索过程中把点分为三类：未遍历过的点0，正在遍历的点1，已经遍历且回溯的点2。<br>任选一点u开始搜索。
+对于与u相连且未搜索的点，递归搜索它并标记为1，回溯时使用并查集将其全部合并到当前点。其实在树中，深度比u深的且和u相连的点就是u的儿子，所以是把儿子都合并到父亲上。<br>然后处理与当前点有关的询问，如果另一个点有标记2，那么当前点与另一个点的LCA就是另一个点的根节点。（其实就是这两个子树中节点的LCA都是那个点）<br>最后把这个根节点标记为2。<br>为什么标记2的点的根节点就是LCA？因为标记为2的点已经被合并完毕，它在并查集中的fa不会有变化了，这个fa也就是它所在的子树的根节点。（其实又利用了LCA合并子树的性质，我觉得）而这个根节点是LCA与dfs的遍历顺序有关，标记为2的点一定是先被遍历，而标记为1的则是之后才被遍历。因为在回溯的时候才会把路径压缩到根节点，所以会保证标记2的点的fa是LCA，即是两个查询节点所在子树的根节点。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#888;font-weight:700>#include&lt;iostream&gt;
+</span></span></span><span style=display:flex><span><span style=color:#888;font-weight:700>#include&lt;vector&gt;
+</span></span></span><span style=display:flex><span><span style=color:#888;font-weight:700>#include&lt;cstring&gt;
+</span></span></span><span style=display:flex><span><span style=color:#888;font-weight:700></span><span style=font-weight:700;text-decoration:underline>using</span> <span style=font-weight:700;text-decoration:underline>namespace</span> std;
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>using</span> PII=pair&lt;<span style=font-weight:700;text-decoration:underline>int</span>,<span style=font-weight:700;text-decoration:underline>int</span>&gt;;
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>const</span> <span style=font-weight:700;text-decoration:underline>int</span> maxn=2e4+10;
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>int</span> head[maxn],tot,n,m;
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>int</span> dis[maxn];
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>int</span> fa[maxn];
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>int</span> st[maxn],res[maxn];
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>struct</span> <span style=color:#666;font-weight:700;font-style:italic>edge</span>{
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>int</span> to,w,next;
+</span></span><span style=display:flex><span>}eg[maxn&lt;&lt;1];
+</span></span><span style=display:flex><span>vector&lt;PII&gt; query[maxn];
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>void</span> <span style=color:#666;font-weight:700;font-style:italic>add</span>(<span style=font-weight:700;text-decoration:underline>int</span> u,<span style=font-weight:700;text-decoration:underline>int</span> v,<span style=font-weight:700;text-decoration:underline>int</span> w)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    eg[tot].to=v;
+</span></span><span style=display:flex><span>    eg[tot].w=w;
+</span></span><span style=display:flex><span>    eg[tot].next=head[u];
+</span></span><span style=display:flex><span>    head[u]=tot++;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>void</span> <span style=color:#666;font-weight:700;font-style:italic>dfs</span>(<span style=font-weight:700;text-decoration:underline>int</span> u,<span style=font-weight:700;text-decoration:underline>int</span> fath)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=head[u];~i;i=eg[i].next)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>int</span> j=eg[i].to;
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>if</span>(j==fath)<span style=font-weight:700;text-decoration:underline>continue</span>;
+</span></span><span style=display:flex><span>        dis[j]=dis[u]+eg[i].w;
+</span></span><span style=display:flex><span>        dfs(j,u);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>int</span> <span style=color:#666;font-weight:700;font-style:italic>find</span>(<span style=font-weight:700;text-decoration:underline>int</span> x)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>return</span> x==fa[x]?x:fa[x]=find(fa[x]);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>void</span> <span style=color:#666;font-weight:700;font-style:italic>tarjan</span>(<span style=font-weight:700;text-decoration:underline>int</span> u)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    st[u]=1;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=head[u];~i;i=eg[i].next)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>int</span> j=eg[i].to;
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>if</span>(!st[j]){
+</span></span><span style=display:flex><span>            tarjan(j);
+</span></span><span style=display:flex><span>            fa[j]=u;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>auto</span> item:query[u])
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>int</span> y=item.first,id=item.second;
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>if</span>(st[y]==2){
+</span></span><span style=display:flex><span>            <span style=font-weight:700;text-decoration:underline>int</span> anc=find(y);
+</span></span><span style=display:flex><span>            res[id]=dis[u]+dis[y]-2*dis[anc];
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    st[u]=2;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>int</span> <span style=color:#666;font-weight:700;font-style:italic>main</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    memset(head,-1,<span style=font-weight:700;text-decoration:underline>sizeof</span> head);
+</span></span><span style=display:flex><span>    cin&gt;&gt;n&gt;&gt;m;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>int</span> u,v,w;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=1;i&lt;n;i++){
+</span></span><span style=display:flex><span>        cin&gt;&gt;u&gt;&gt;v&gt;&gt;w;
+</span></span><span style=display:flex><span>        add(u,v,w),add(v,u,w);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=0;i&lt;m;i++){
+</span></span><span style=display:flex><span>        cin&gt;&gt;u&gt;&gt;v;
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>if</span>(u!=v){
+</span></span><span style=display:flex><span>            query[u].push_back({v,i});
+</span></span><span style=display:flex><span>            query[v].push_back({u,i});
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=1;i&lt;=n;i++)fa[i]=i;
+</span></span><span style=display:flex><span>    dfs(2,-1);
+</span></span><span style=display:flex><span>    tarjan(2);
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=0;i&lt;m;i++)cout&lt;&lt;res[i]&lt;&lt;endl;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>return</span> 0;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=应用>应用</h2><h3 id=次小生成树>次小生成树</h3><p>这是人做的？</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#888;font-weight:700>#include&lt;iostream&gt;
+</span></span></span><span style=display:flex><span><span style=color:#888;font-weight:700>#include&lt;algorithm&gt;
+</span></span></span><span style=display:flex><span><span style=color:#888;font-weight:700>#include&lt;vector&gt;
+</span></span></span><span style=display:flex><span><span style=color:#888;font-weight:700>#include&lt;cstring&gt;
+</span></span></span><span style=display:flex><span><span style=color:#888;font-weight:700>#include&lt;queue&gt;
+</span></span></span><span style=display:flex><span><span style=color:#888;font-weight:700></span><span style=font-weight:700;text-decoration:underline>using</span> <span style=font-weight:700;text-decoration:underline>namespace</span> std;
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>using</span> ll=<span style=font-weight:700;text-decoration:underline>long</span> <span style=font-weight:700;text-decoration:underline>long</span>;
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>const</span> <span style=font-weight:700;text-decoration:underline>int</span> N=1e5+10,M=3e5+10,inf=0x3f3f3f3f;
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>int</span> n,m;
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>struct</span> <span style=color:#666;font-weight:700;font-style:italic>edge</span>{
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>int</span> a,b,w;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>bool</span> used;
+</span></span><span style=display:flex><span>}eg[M];
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>int</span> p[N];
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>int</span> h[N],e[M],w[M],ne[M],idx;
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>int</span> depth[N],fa[N][17],d1[N][17],d2[N][17];
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>void</span> <span style=color:#666;font-weight:700;font-style:italic>add</span>(<span style=font-weight:700;text-decoration:underline>int</span> a,<span style=font-weight:700;text-decoration:underline>int</span> b,<span style=font-weight:700;text-decoration:underline>int</span> c)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    e[idx]=b,ne[idx]=h[a],w[idx]=c,h[a]=idx++;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>int</span> <span style=color:#666;font-weight:700;font-style:italic>find</span>(<span style=font-weight:700;text-decoration:underline>int</span> x)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>return</span> x==p[x]?x:p[x]=find(p[x]);
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>ll <span style=color:#666;font-weight:700;font-style:italic>kruskal</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=1;i&lt;=n;i++)p[i]=i;
+</span></span><span style=display:flex><span>    sort(eg,eg+m,[](edge a,edge b){<span style=font-weight:700;text-decoration:underline>return</span> a.w&lt;b.w;});
+</span></span><span style=display:flex><span>    ll res=0;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=0;i&lt;m;i++)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>int</span> a=find(eg[i].a),b=find(eg[i].b);
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>if</span>(a!=b){
+</span></span><span style=display:flex><span>            p[a]=b;
+</span></span><span style=display:flex><span>            res+=eg[i].w;
+</span></span><span style=display:flex><span>            eg[i].used=<span style=font-weight:700;font-style:italic>true</span>;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>return</span> res;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>void</span> <span style=color:#666;font-weight:700;font-style:italic>build</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    memset(h,-1,<span style=font-weight:700;text-decoration:underline>sizeof</span> h);
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=0;i&lt;m;i++)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>if</span>(eg[i].used)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=font-weight:700;text-decoration:underline>int</span> a=eg[i].a,b=eg[i].b,w=eg[i].w;
+</span></span><span style=display:flex><span>            add(a,b,w),add(b,a,w);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>void</span> <span style=color:#666;font-weight:700;font-style:italic>bfs</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    memset(depth,inf,<span style=font-weight:700;text-decoration:underline>sizeof</span> depth);
+</span></span><span style=display:flex><span>    depth[0]=0,depth[1]=1;
+</span></span><span style=display:flex><span>    queue&lt;<span style=font-weight:700;text-decoration:underline>int</span>&gt;q;
+</span></span><span style=display:flex><span>    q.push(1);
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>while</span>(!q.empty())
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>int</span> t=q.front();
+</span></span><span style=display:flex><span>        q.pop();
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=h[t];~i;i=ne[i])
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=font-weight:700;text-decoration:underline>int</span> j=e[i];
+</span></span><span style=display:flex><span>            <span style=font-weight:700;text-decoration:underline>if</span>(depth[j]&gt;depth[t]+1){
+</span></span><span style=display:flex><span>                depth[j]=depth[t]+1;
+</span></span><span style=display:flex><span>                q.push(j);
+</span></span><span style=display:flex><span>                fa[j][0]=t;
+</span></span><span style=display:flex><span>                d1[j][0]=w[i],d2[j][0]=-inf;
+</span></span><span style=display:flex><span>                <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> k=1;k&lt;=16;k++)
+</span></span><span style=display:flex><span>                {
+</span></span><span style=display:flex><span>                    <span style=font-weight:700;text-decoration:underline>int</span> anc=fa[j][k-1];
+</span></span><span style=display:flex><span>                    fa[j][k]=fa[anc][k-1];
+</span></span><span style=display:flex><span>                    <span style=font-weight:700;text-decoration:underline>int</span> distance[4]={d1[j][k-1],d2[j][k-1],d1[anc][k-1],d2[anc][k-1]};
+</span></span><span style=display:flex><span>                    d1[j][k]=d2[j][k]=-inf;
+</span></span><span style=display:flex><span>                    <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> d:distance)
+</span></span><span style=display:flex><span>                    {
+</span></span><span style=display:flex><span>                        <span style=font-weight:700;text-decoration:underline>if</span>(d&gt;d1[j][k])d2[j][k]=d1[j][k],d1[j][k]=d;
+</span></span><span style=display:flex><span>                        <span style=font-weight:700;text-decoration:underline>else</span> <span style=font-weight:700;text-decoration:underline>if</span>(d!=d1[j][k]&amp;&amp;d&gt;d2[j][k])d2[j][k]=d;
+</span></span><span style=display:flex><span>                    }
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>int</span> <span style=color:#666;font-weight:700;font-style:italic>lca</span>(<span style=font-weight:700;text-decoration:underline>int</span> a,<span style=font-weight:700;text-decoration:underline>int</span> b,<span style=font-weight:700;text-decoration:underline>int</span> w)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>static</span> <span style=font-weight:700;text-decoration:underline>int</span> distance[N&lt;&lt;1];
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>int</span> cnt=0;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>if</span>(depth[a]&lt;depth[b])swap(a,b);
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> k=16;k&gt;=0;k--)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>if</span>(depth[fa[a][k]]&gt;=depth[b])
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            distance[cnt++]=d1[a][k];
+</span></span><span style=display:flex><span>            distance[cnt++]=d2[a][k];
+</span></span><span style=display:flex><span>            a=fa[a][k];
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>if</span>(a!=b)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> k=16;k&gt;=0;k--)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=font-weight:700;text-decoration:underline>if</span>(fa[a][k]!=fa[b][k])
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                distance[cnt++]=d1[a][k];
+</span></span><span style=display:flex><span>                distance[cnt++]=d2[a][k];
+</span></span><span style=display:flex><span>                distance[cnt++]=d1[b][k];
+</span></span><span style=display:flex><span>                distance[cnt++]=d2[b][k];
+</span></span><span style=display:flex><span>                a=fa[a][k],b=fa[b][k];
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        distance[cnt++]=d1[a][0];
+</span></span><span style=display:flex><span>        distance[cnt++]=d1[b][0];
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>int</span> dis1=-inf,dis2=-inf;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=0;i&lt;cnt;i++)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>int</span> d=distance[i];
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>if</span>(d&gt;dis1)dis2=dis1,dis1=d;
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>else</span> <span style=font-weight:700;text-decoration:underline>if</span>(d!=dis1&amp;&amp;d&gt;dis2)dis2=d;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>if</span>(w&gt;dis1)<span style=font-weight:700;text-decoration:underline>return</span> w-dis1;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>if</span>(w&gt;dis2)<span style=font-weight:700;text-decoration:underline>return</span> w-dis2;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>return</span> inf;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>int</span> <span style=color:#666;font-weight:700;font-style:italic>main</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    cin&gt;&gt;n&gt;&gt;m;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=0;i&lt;m;i++){
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>int</span> a,b,c;
+</span></span><span style=display:flex><span>        cin&gt;&gt;a&gt;&gt;b&gt;&gt;c;
+</span></span><span style=display:flex><span>        eg[i]={a,b,c};
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    ll sum=kruskal();
+</span></span><span style=display:flex><span>    build();
+</span></span><span style=display:flex><span>    bfs();
+</span></span><span style=display:flex><span>    ll res=2e18;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=0;i&lt;m;i++)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>if</span>(!eg[i].used)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=font-weight:700;text-decoration:underline>int</span> a=eg[i].a,b=eg[i].b,w=eg[i].w;
+</span></span><span style=display:flex><span>            res=min(res,sum+lca(a,b,w));
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    cout&lt;&lt;res&lt;&lt;endl;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>return</span> 0;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>除了LCA和最小生成树不用说，主要的问题在于存路径上的最长边和次长边用于之后的替换。</p><h3 id=树上差分>树上差分</h3><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#888;font-weight:700>#include&lt;bits/stdc++.h&gt;
+</span></span></span><span style=display:flex><span><span style=color:#888;font-weight:700></span><span style=font-weight:700;text-decoration:underline>using</span> <span style=font-weight:700;text-decoration:underline>namespace</span> std;
+</span></span><span style=display:flex><span><span style=color:#888;font-weight:700>#define N 500100
+</span></span></span><span style=display:flex><span><span style=color:#888;font-weight:700></span><span style=font-weight:700;text-decoration:underline>int</span> n,m,tot,ans,p[N],f1[N],lin[N],f[N][25],d[N],vis[N];
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>struct</span> <span style=color:#666;font-weight:700;font-style:italic>gg</span> {
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>int</span> x,y,next;
+</span></span><span style=display:flex><span>}a[N&lt;&lt;1];
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>inline</span> <span style=font-weight:700;text-decoration:underline>void</span> <span style=color:#666;font-weight:700;font-style:italic>add</span>(<span style=font-weight:700;text-decoration:underline>int</span> x,<span style=font-weight:700;text-decoration:underline>int</span> y) {
+</span></span><span style=display:flex><span>    a[++tot].x=x;
+</span></span><span style=display:flex><span>    a[tot].y=y;
+</span></span><span style=display:flex><span>    a[tot].next=lin[x];
+</span></span><span style=display:flex><span>    lin[x]=tot;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>void</span> <span style=color:#666;font-weight:700;font-style:italic>bfs</span>(<span style=font-weight:700;text-decoration:underline>int</span> x) {
+</span></span><span style=display:flex><span>    queue&lt;<span style=font-weight:700;text-decoration:underline>int</span>&gt; q;
+</span></span><span style=display:flex><span>    q.push(1);
+</span></span><span style=display:flex><span>    d[1]=1;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>while</span>(q.size()) {
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>int</span> x=q.front();
+</span></span><span style=display:flex><span>        q.pop();
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=lin[x];i;i=a[i].next) {
+</span></span><span style=display:flex><span>            <span style=font-weight:700;text-decoration:underline>int</span> y=a[i].y;
+</span></span><span style=display:flex><span>            <span style=font-weight:700;text-decoration:underline>if</span>(d[y]) <span style=font-weight:700;text-decoration:underline>continue</span>;
+</span></span><span style=display:flex><span>            d[y]=d[x]+1;
+</span></span><span style=display:flex><span>            f[y][0]=x;
+</span></span><span style=display:flex><span>            <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> j=1;j&lt;=23;j++){
+</span></span><span style=display:flex><span>                f[y][j]=f[f[y][j-1]][j-1];
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>            q.push(y);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>inline</span> <span style=font-weight:700;text-decoration:underline>int</span> <span style=color:#666;font-weight:700;font-style:italic>lca</span>(<span style=font-weight:700;text-decoration:underline>int</span> x,<span style=font-weight:700;text-decoration:underline>int</span> y) {
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>if</span>(d[x]&gt;d[y]) swap(x,y);
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=23;i&gt;=0;i--) {
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>if</span>(d[f[y][i]]&gt;=d[x]) y=f[y][i];
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>if</span>(x==y) <span style=font-weight:700;text-decoration:underline>return</span> x;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=23;i&gt;=0;i--) {
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>if</span>(f[x][i]!=f[y][i]) x=f[x][i],y=f[y][i];
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>return</span> f[x][0];
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>inline</span> <span style=font-weight:700;text-decoration:underline>void</span> <span style=color:#666;font-weight:700;font-style:italic>dfs</span>(<span style=font-weight:700;text-decoration:underline>int</span> x) {
+</span></span><span style=display:flex><span>    vis[x]=1;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=lin[x];i;i=a[i].next) {
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>int</span> y=a[i].y;
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>if</span>(vis[y]) <span style=font-weight:700;text-decoration:underline>continue</span>;
+</span></span><span style=display:flex><span>        dfs(y);
+</span></span><span style=display:flex><span>        p[x]+=p[y];
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>int</span> <span style=color:#666;font-weight:700;font-style:italic>main</span>() {
+</span></span><span style=display:flex><span>    cin&gt;&gt;n&gt;&gt;m;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>int</span> x,y;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=1;i&lt;n;i++) {
+</span></span><span style=display:flex><span>        cin&gt;&gt;x&gt;&gt;y;
+</span></span><span style=display:flex><span>        add(x,y);
+</span></span><span style=display:flex><span>        add(y,x);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    bfs(1);
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=1;i&lt;=m;i++) {
+</span></span><span style=display:flex><span>        cin&gt;&gt;x&gt;&gt;y;
+</span></span><span style=display:flex><span>        p[x]++,p[y]++;
+</span></span><span style=display:flex><span>        p[lca(x,y)]-=2;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    dfs(1);
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=2;i&lt;=n;i++) {
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>if</span>(!p[i]) ans+=m;
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>if</span>(p[i]==1) ans+=1;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    cout&lt;&lt;ans&lt;&lt;endl;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>return</span> 0;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=总结>总结</h2><p>LCA算是偏基础的算法了，不是说他好写，是需要用它作为其它算法的基础才能解决问题。裸的LCA没啥问题，但是用LCA去解决在树上找边、删边、换边等问题就比较麻烦了。</p></div><div class=single-pagination><hr><div class=flex><div class=single-pagination-prev><div class=single-pagination-container-prev><div class=single-pagination-text>←</div><div class=single-pagination-text><a href=/posts/fft%E4%B8%8Entt/>FFT与NTT</a></div></div></div><div class=single-pagination-next><div class=single-pagination-container-next><div class=single-pagination-text><a href=/posts/tarjan%E5%BC%BA%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%E4%B8%8E%E7%BC%A9%E7%82%B9/>Tarjan强连通分量与缩点</a></div><div class=single-pagination-text>→</div></div></div></div><hr></div><div class=back-to-top><a href=#top>back to top</a></div><script src=https://giscus.app/client.js data-repo=amcones/amcones.github.io data-repo-id=R_kgDONNHtbw data-category data-category-id=DIC_kwDONNHtb84CkJ6n data-mapping=title data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=top data-theme=preferred_color_scheme data-lang=en data-loading=lazy crossorigin=anonymous async></script></div></main></div><footer><p style=text-align:center>powered by <a href=https://gohugo.io/>hugo</a> & <a href=https://github.com/tomfran/typo>typo</a> theme<br><a href=https://creativecommons.org/licenses/by-nc/4.0/deed.en>CC-BY-NC 4.0</a>｜2019 - 2024 ©<a href=https://github.com/amcones>amcones</a> All rights reserved.｜<a href=https://beian.miit.gov.cn/#/Integrated/index>沪icp备20007771号-2</a></p><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js onload=renderMathInElement(document.body)></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}]})})</script></footer></body><script>function isAuto(){return document.body.classList.contains("auto")}function setTheme(){if(!isAuto())return;document.body.classList.remove("auto");let e="light";window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches&&(e="dark"),document.body.classList.add(e)}function invertBody(){document.body.classList.toggle("dark"),document.body.classList.toggle("light")}isAuto()&&window.matchMedia("(prefers-color-scheme: dark)").addListener(invertBody),setTheme()</script></html>

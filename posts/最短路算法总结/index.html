@@ -1,0 +1,177 @@
+<!doctype html><html lang=zh-CN dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width"><link rel=icon type=image/png href=/favicon-96x96.png sizes=96x96><link rel=icon type=image/svg+xml href=/favicon.svg><link rel="shortcut icon" href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><meta name=apple-mobile-web-app-title content="Uli's blog"><link rel=manifest href=/site.webmanifest><script>document.addEventListener("copy",function(e){const t=window.getSelection().toString(),n=`
+
+来源：amcones.cn  
+本文以 CC-BY-NC 4.0 协议共享，转载请注明出处
+`;e.clipboardData.setData("text/plain",t+n),e.preventDefault()})</script><meta name=description content><title>最短路算法总结 | uli's blog
+</title><link rel=canonical href=/posts/%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/><meta property="og:url" content="/posts/%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/"><meta property="og:site_name" content="uli's blog"><meta property="og:title" content="最短路算法总结"><meta property="og:description" content="最短路应该是图论最基本的问题了，之后在各种问题中也会作为基本算法组合使用。这里整理一下五种常用最短路算法（我也不知道还有啥了）的思想和用处。"><meta property="og:locale" content="zh_CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-01-15T23:36:18+08:00"><meta property="article:modified_time" content="2025-01-15T23:39:06+08:00"><link rel=stylesheet href=/assets/combined.min.6efbad4572bc0b89f251dc05da938f779f0a7b1916fad60c50aa0cec40b677aa.css media=all></head><body class=auto><div class=content><header><div class=header><h1 class=header-title><a href=/>uli's blog</a></h1><div class=flex><p class=small><a href=/>/主页</a></p><p class=small><a href=/posts>/文章</a></p><p class=small><a href=/friends>/朋友</a></p><p class=small><a href=/about>/关于</a></p></div></div></header><main class=main><div class=breadcrumbs><a href=/>Home</a>
+<span class=breadcrumbs-separator>> </span><a href=/posts/>Posts</a>
+<span class=breadcrumbs-separator>> </span><a class=breadcrumbs-current href=/posts/%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/>最短路算法总结</a></div><div class=autonumber><div class=single-intro-container><h1 class=single-title>最短路算法总结</h1><p class=single-summary>最短路应该是图论最基本的问题了，之后在各种问题中也会作为基本算法组合使用。这里整理一下五种常用最短路算法（我也不知道还有啥了）的思想和用处。</p><p class=single-readtime><time datetime=2025-01-15T23:36:18+08:00>2025/01/15 23:36</time>
+(Modified: <time datetime=2025-01-15T23:39:06+08:00>2025/01/15 23:39</time>)
+&nbsp; · &nbsp;
+3 min read</p></div><div class=single-content><p>最短路应该是图论最基本的问题了，之后在各种问题中也会作为基本算法组合使用。这里整理一下五种常用最短路算法（我也不知道还有啥了）的思想和用处。<br><strong>前置知识：存图，图的定义</strong></p><h2 id=所有结点对的最短路径问题>所有结点对的最短路径问题</h2><h3 id=基于动态规划的矩阵乘法求解>基于动态规划的矩阵乘法求解</h3><p>由于时间复杂度比floyd都高（为$O(n^3lgn)$，还是用快速幂优化了），所以没人用。只是作为一个思想在此简述。</p><h3 id=floyd>floyd</h3><p>使用$O(n^3)$的时间，使用每一个点对整张图进行松弛。使用场景：任意两点间最短路，传递闭包。</p><blockquote><p>从数学上来说，传递闭包是在集合$X$上求包含关系$R$的最小传递关系。从关系图的角度来说，就是如果原关系图上有$i$到$j$的路径，则其传递闭包的关系图上就应有从$i$到$j$的边。通俗地讲，就是确定每个点是否能到达其他每个点。</p></blockquote><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>for</span> (<span style=font-weight:700;text-decoration:underline>int</span> k = 1; k &lt;= n; ++k)
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span> (<span style=font-weight:700;text-decoration:underline>int</span> i = 1; i &lt;= n; ++i)
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>for</span> (<span style=font-weight:700;text-decoration:underline>int</span> j = 1; j &lt;= n; ++j)
+</span></span><span style=display:flex><span>            <span style=font-weight:700;text-decoration:underline>if</span> (E[i][k] &amp;&amp; E[k][j])
+</span></span><span style=display:flex><span>                E[i][j] = 1;
+</span></span></code></pre></div><h3 id=johnson>Johnson</h3><p>用于大型稀疏图，时间复杂度$O(n^2lgn+nv)$。使用dijkstra和bellman-ford作为子程序。<em>因为挺麻烦的所以其实挺少用。</em><br>思想很简单，使用的技术称为<strong>重新赋予权重</strong>。如果图中无负权边，那么跑n-1次dijkstra就能得到任意两点间的最短距离。<br>但如果存在负权边，由于dijkstra无法处理负权边，很简单的想法是给所有边加上一个值使得所有边大于0，算出最短路后再一起减去这个值，但这样是不对的，可以举出反例。<br>应当赋予的权重$\hat\omega$必须满足两个性质：</p><ol><li>$\hat\omega$不改变原来的最短路径。</li><li>$\hat\omega$非负。</li></ol><p>正确的做法是添加虚拟节点到图中，它到所有点的距离都为0。以虚拟节点为起点执行Bellman-Ford，求出到每个节点的最短距离，这个距离为每个节点的值，再去更新图里的所有边，最后再对每个点执行dijkstra。<br>算法步骤：</p><ol><li>添加虚拟节点到这个图里，并添加指向所有节点的虚拟边，这些边的权重为0</li><li>以虚拟节点节点为起点，运行 Bellman-Ford 算法，求出到每个节点的最短距离，这些最短距离为每个节点的值</li><li>用上面求出的h值去更新图里的边，使得$eg[u,v]=eg[u,v]+h[u]-h[v] $</li><li>移除添加的虚拟节点和边</li><li>在每个节点运行 Dijkstra 计算到其它节点的最短距离
+《算法导论》说使用斐波那契堆实现Dijkstra效率会比使用普通二叉堆高，不清楚具体的，反正差不多。</li></ol><p>以下是证明。<br><strong>引理</strong>：给定带权重的有向图$G=(V,E)$ ，其权重函数为$\omega:E\rightarrow R$ ，设$h:V\rightarrow R$ 为任意函数，该函数将结点映射到实数上。对于每条边$(u,v)\in E$ ，定义
+$$
+\hat\omega(u,v)=\omega(u,v)+h(u)-h(v)
+$$
+设$p=\langle v_0,v_1,\cdots,v_k\rangle$ 为从结点$v_0$ 到$v_k$ 的任意一条路径，那么$p$是在使用权重函数$\omega$时从结点$v_0$ 到$v_k$ 的一条最短路径，当且仅当$p$ 是在使用权重函数$\hat\omega$ 时从结点$v_0$ 到$v_k$ 的一条最短路径，即$\omega(p)=\delta(v_0,v_k)$ 当且仅当$\hat\omega(p)=\hat\delta(v_0,v_k)$ 。而且，图$G$ 在使用权重函数$\omega$ 时不包含权重为负值的环路，当且仅当$p$ 在使用权重函数$\hat\omega$ 也不包含权重为负值的环路。<br><strong>证明</strong>：
+首先来证明
+$$
+\hat\omega(p)=\omega(p)+h(v_0)-h(v_k)
+$$
+我们有：<br>$$
+\begin{aligned}
+\hat\omega(p) & = \sum\limits^k_{i=1}\hat\omega(v_{i-1},v_i)\\
+& = \sum\limits^k_{i=1}(\omega(v_{i-1},v_i)+h(v_{i-1})-h(v_i))\\
+& = \sum\limits^k_{i=1}\omega(v_{i-1},v_i)+h(v_0)-h(v_k)\text{(裂项相消)} \\
+& = \omega(p)+h(v_0)-h(v_k)
+\end{aligned}
+$$
+因为 $h(v_0)$ 和 $h(v_k)$ 不依赖于任何具体的路径，如果从结点 $v_0$ 到 $v_k$ 的一条路径在使用权重函数 $\omega$ 时比另一条路径短，则其在使用权重函数 $\hat\omega$ 时也比另一条短。因此 $\omega(p)=\delta(v_0,v_k)$ 当且仅当 $\hat\omega(p)=\hat\delta(v_0,v_k)$ 。<br>最后，我们来证明图 $G$ 在使用权重函数 $\omega$ 时包含一个权重为负值的环路当且仅当 $p$ 在使用权重函数 $\hat\omega$ 时也包含一个权重为负值的环路。考虑任意环路 $c=\langle v_0,v_1,\cdots,v_k\rangle$ ，其中 $v_0=v_k$ 。根据 $\hat\omega(c)=\omega(c)+h(v_0)-h(v_k)=\omega(c)$ ，因此，环路 $c$ 在使用权重函数 $\omega$ 时为负值当且仅当 $c$ 在使用权重函数 $\hat\omega$ 时也为负值。<br>接下来证明第二个性质保持成立，即对于所有的边 $(u,v)\in E$ ，$\hat\omega(u,v)$ 为非负值。给定带权重的有向图 $G=(V,E)$ ，其权重函数为 $\omega:E\rightarrow R$ 。制作一张新图 $G&rsquo;=(V&rsquo;,E&rsquo;)$ ，这里 $V&rsquo;=V\cup{s}$ ，$s$ 是一个新结点，$s\notin V$ ，$E&rsquo;=E\cup{(s,v):v\in V}$ 。我们对权重函数$\omega$ 进行扩展，使得对于所有的结点$v\in V,\omega(s,v)=0$ 。因为$s$ 入度为0，除了以$s$ 为源结点的最短路径外，图$G&rsquo;$中没有其他包含结点$s$ 的最短路径。而且，图$G&rsquo;$ 不包含权重为负值的环路当且仅当图$G$ 不包含权重为负值的环路。<br>现在假定图$G$ 和图$G&rsquo;$ 都不包含权重为负值的环路。让我们定义，对于所有的结点$v\in V&rsquo;,h(v)=\delta(s,v)$ 。根据三角不等式，对于所有的边$(u,v)\in E&rsquo;$ ，有$h(v)\leqslant h(u)+\omega(u,v)$ 。因此，如果我们根据$\hat\omega(p)=\omega(p)+h(v_0)-h(v_k)$ 来定义新的权重$\hat\omega$ ，则有$\hat\omega(u,v)=\omega(u,v)+h(u)-h(v)\geqslant 0$ ，至此我们满足了第二条性质。<br>Q.E.D.</p><h2 id=单源最短路径>单源最短路径</h2><h3 id=dijkstra>dijkstra</h3><p>思想是从起点开始，每次选择离起点最近的且未访问过的（即未曾被作为松弛点）点，将与此点相连的所有点的距离松弛。<br>在选择离起点最近的点时，朴素dijkstra使用暴力$O(n)$找出最近点，而堆优化dijkstra则能够$O(logv)$找出最近点。但由于堆优化dijkstra需要将所有边加入堆进行松弛，所以复杂度与边有关。
+使用场景：单源最短路，无负权边。</p><h4 id=朴素dijkstra>朴素dijkstra</h4><p>时间复杂度$O(n^2)$，使用场景稠密图。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>int</span> dis1[maxn],dis2[maxn],vis[maxn],mp[maxn][maxn];
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>void</span> <span style=color:#666;font-weight:700;font-style:italic>dij</span>(<span style=font-weight:700;text-decoration:underline>int</span> s)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    memset(vis,0,<span style=font-weight:700;text-decoration:underline>sizeof</span> vis);
+</span></span><span style=display:flex><span>    memset(dis1,0x3f,<span style=font-weight:700;text-decoration:underline>sizeof</span> dis1);
+</span></span><span style=display:flex><span>    dis1[s]=0;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=1;i&lt;=n;i++){
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>int</span> t=-1;
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> j=1;j&lt;=n;j++){
+</span></span><span style=display:flex><span>            <span style=font-weight:700;text-decoration:underline>if</span>(!vis[j]&amp;&amp;(t==-1||dis1[j]&lt;dis1[t]))t=j;
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>        vis[t]=1;
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> j=1;j&lt;=n;j++){
+</span></span><span style=display:flex><span>            dis1[j]=min(dis1[j],dis1[t]+mp[t][j]);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h4 id=堆优化dijkstra>堆优化dijkstra</h4><p>时间复杂度$O(nvlogv)$（或写为$O(Elogv)$）。一般情况下都用它。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>void</span> <span style=color:#666;font-weight:700;font-style:italic>dij</span>(<span style=font-weight:700;text-decoration:underline>int</span> s)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    fill(dis,dis+maxn,inf);
+</span></span><span style=display:flex><span>    priority_queue&lt;Pair,vector&lt;Pair&gt;,greater&lt;Pair&gt;&gt; q;
+</span></span><span style=display:flex><span>    dis[s]=0;
+</span></span><span style=display:flex><span>    q.push({0,s});
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>while</span>(!q.empty())
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>int</span> p=q.top().second;
+</span></span><span style=display:flex><span>        q.pop();
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>if</span>(vis[p])<span style=font-weight:700;text-decoration:underline>continue</span>;
+</span></span><span style=display:flex><span>        vis[p]=<span style=font-weight:700;font-style:italic>true</span>;
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=head[p];i!=-1;i=eg[i].next){
+</span></span><span style=display:flex><span>            <span style=font-weight:700;text-decoration:underline>int</span> to=eg[i].to;
+</span></span><span style=display:flex><span>            dis[to]=min(dis[to],eg[i].w+dis[p]);
+</span></span><span style=display:flex><span>            <span style=font-weight:700;text-decoration:underline>if</span>(!vis[to])q.push({dis[to],to});
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=bellman-ford>Bellman-Ford</h3><p>思想是把所有边松弛n-1遍。时间复杂度$O(nv)$。为什么要用这么暴力的算法？因为使用场景有边数限制的最短路。<br>由于Bellman-Ford每松弛一遍，相当于在最短路中插入了一条边，所以只要运行k次就是只有k条边的最短路了。
+实现时，为了避免串联效应，即边数限制为1时却把要经过2条边才能到达的点也给更新了，需要一个备份数组，备份更新之前的距离，再用备份数组去更新其它点的距离。</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>int</span> <span style=color:#666;font-weight:700;font-style:italic>bellmanford</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    memset(dis,0x3f,<span style=font-weight:700;text-decoration:underline>sizeof</span> dis);
+</span></span><span style=display:flex><span>    dis[1]=0;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=1;i&lt;=k;i++){
+</span></span><span style=display:flex><span>        memcpy(backup,dis,<span style=font-weight:700;text-decoration:underline>sizeof</span> dis);
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> j=0;j&lt;m;j++){
+</span></span><span style=display:flex><span>            dis[eg[j].v]=min(dis[eg[j].v],backup[eg[j].u]+eg[j].w);
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>if</span>(dis[n]&gt;0x3f3f3f3f/2)<span style=font-weight:700;text-decoration:underline>return</span> -1;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>return</span> dis[n];
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=spfa>SPFA</h3><p>Bellman-Ford的队列优化版本，最坏情况下复杂度能卡到和Bellman-Ford一致。优化的思路是每次不用松弛所有点，只松弛被松弛的点能够直接到达的点，因为其它点不可能被更新。使用场景判负环、正环。（只要判断一个点是否入队超过n次即可）</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>bool</span> <span style=color:#666;font-weight:700;font-style:italic>spfa</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    queue&lt;<span style=font-weight:700;text-decoration:underline>int</span>&gt;q;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=1;i&lt;=n;i++)q.push(i);
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>while</span>(!q.empty())
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>int</span> t=q.front();
+</span></span><span style=display:flex><span>        q.pop();
+</span></span><span style=display:flex><span>        st[t]=<span style=font-weight:700;font-style:italic>false</span>;
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=head[t];~i;i=eg[i].next)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=font-weight:700;text-decoration:underline>int</span> j=eg[i].to;
+</span></span><span style=display:flex><span>            <span style=font-weight:700;text-decoration:underline>if</span>(dis[j]&gt;dis[t]+eg[i].w){
+</span></span><span style=display:flex><span>                dis[j]=dis[t]+eg[i].w;
+</span></span><span style=display:flex><span>                cnt[j]=cnt[t]+1;
+</span></span><span style=display:flex><span>                <span style=font-weight:700;text-decoration:underline>if</span>(cnt[j]&gt;=n)<span style=font-weight:700;text-decoration:underline>return</span> <span style=font-weight:700;font-style:italic>true</span>;
+</span></span><span style=display:flex><span>                <span style=font-weight:700;text-decoration:underline>if</span>(!st[j]){
+</span></span><span style=display:flex><span>                    q.push(j);
+</span></span><span style=display:flex><span>                    st[j]=<span style=font-weight:700;font-style:italic>true</span>;
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>return</span> <span style=font-weight:700;font-style:italic>false</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=差分约束>差分约束</h2><p><a href=https://oi-wiki.org/graph/diff-constraints/>差分约束 - OI Wiki</a><br><del>什么鸟语</del><br>人话就是找出一组解，使得n元一次不等式组成立。任何最短路问题和差分约束问题都可以相互转化。<br>原理：约束条件$x_i-x_j\leqslant c_k$都可以变形为$x_i\leqslant x_j+c_k$，与$dis[y]\leqslant dis[x]+z$最短路三角不等式非常相似。因此，我们可以把每个变量$x_i$看做图中的一个结点，对于每个约束条件$x_i-x_j\leqslant c_k$，从结点$j$向结点$i$连一条长度为$c_k$的有向边。<br>建立超级源点，令$dis[0]=0$，并向所有点连长度为最低限制的边（比如所有x都要大于1），确保可以访问所有点和边，然后跑SPFA。当图中存在负环则无解（可使用反证法证明），这也是需要使用SPFA而不是dijkstra的原因，不存在负环则一定存在一组解。<br>求最少转化为最长路（因为是求距离的下界），求最大则转化为最短路（因为是求距离的上界）。<br>注：有些时候把SPFA中的队列改成栈会跑得更快，因为存在负环的话会直接被判出。（反复入栈n+1次）但SPFA的复杂度太玄学了，不能随便改。<br><a href=https://loj.ac/p/2436>#2436. 「SCOI2011」糖果 - Problem - LibreOJ</a></p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#888;font-weight:700>#include&lt;iostream&gt;
+</span></span></span><span style=display:flex><span><span style=color:#888;font-weight:700>#include&lt;cstring&gt;
+</span></span></span><span style=display:flex><span><span style=color:#888;font-weight:700>#include&lt;stack&gt;
+</span></span></span><span style=display:flex><span><span style=color:#888;font-weight:700></span><span style=font-weight:700;text-decoration:underline>using</span> <span style=font-weight:700;text-decoration:underline>namespace</span> std;
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>using</span> ll=<span style=font-weight:700;text-decoration:underline>long</span> <span style=font-weight:700;text-decoration:underline>long</span>;
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>const</span> <span style=font-weight:700;text-decoration:underline>int</span> N=1e5+10,M=3e5+10;
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>int</span> head[N],cnt[N],st[N],tot,n,m;
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>struct</span> <span style=color:#666;font-weight:700;font-style:italic>edge</span>{
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>int</span> to,w,next;
+</span></span><span style=display:flex><span>}eg[M];
+</span></span><span style=display:flex><span>ll dis[N];
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>void</span> <span style=color:#666;font-weight:700;font-style:italic>add</span>(<span style=font-weight:700;text-decoration:underline>int</span> u,<span style=font-weight:700;text-decoration:underline>int</span> v,<span style=font-weight:700;text-decoration:underline>int</span> w)
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    eg[tot].to=v;
+</span></span><span style=display:flex><span>    eg[tot].w=w;
+</span></span><span style=display:flex><span>    eg[tot].next=head[u];
+</span></span><span style=display:flex><span>    head[u]=tot++;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>bool</span> <span style=color:#666;font-weight:700;font-style:italic>spfa</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    memset(dis,-0x3f,<span style=font-weight:700;text-decoration:underline>sizeof</span> dis);
+</span></span><span style=display:flex><span>    stack&lt;<span style=font-weight:700;text-decoration:underline>int</span>&gt;s;
+</span></span><span style=display:flex><span>    s.push(0);
+</span></span><span style=display:flex><span>    dis[0]=0;
+</span></span><span style=display:flex><span>    st[0]=<span style=font-weight:700;font-style:italic>true</span>;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>while</span>(!s.empty())
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>int</span> t=s.top();
+</span></span><span style=display:flex><span>        s.pop();
+</span></span><span style=display:flex><span>        st[t]=<span style=font-weight:700;font-style:italic>false</span>;
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=head[t];~i;i=eg[i].next){
+</span></span><span style=display:flex><span>            <span style=font-weight:700;text-decoration:underline>int</span> j=eg[i].to;
+</span></span><span style=display:flex><span>            <span style=font-weight:700;text-decoration:underline>if</span>(dis[j]&lt;dis[t]+eg[i].w){
+</span></span><span style=display:flex><span>                dis[j]=dis[t]+eg[i].w;
+</span></span><span style=display:flex><span>                cnt[j]=cnt[t]+1;
+</span></span><span style=display:flex><span>                <span style=font-weight:700;text-decoration:underline>if</span>(cnt[j]&gt;=n+1)<span style=font-weight:700;text-decoration:underline>return</span> <span style=font-weight:700;font-style:italic>false</span>;
+</span></span><span style=display:flex><span>                <span style=font-weight:700;text-decoration:underline>if</span>(!st[j]){
+</span></span><span style=display:flex><span>                    s.push(j);
+</span></span><span style=display:flex><span>                    st[j]=<span style=font-weight:700;font-style:italic>true</span>;
+</span></span><span style=display:flex><span>                }
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>return</span> <span style=font-weight:700;font-style:italic>true</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=font-weight:700;text-decoration:underline>int</span> <span style=color:#666;font-weight:700;font-style:italic>main</span>()
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    memset(head,-1,<span style=font-weight:700;text-decoration:underline>sizeof</span> head);
+</span></span><span style=display:flex><span>    cin&gt;&gt;n&gt;&gt;m;
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>while</span>(m--){
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>int</span> x,a,b;
+</span></span><span style=display:flex><span>        cin&gt;&gt;x&gt;&gt;a&gt;&gt;b;
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>if</span>(x==1)add(a,b,0),add(b,a,0);
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>else</span> <span style=font-weight:700;text-decoration:underline>if</span>(x==2)add(a,b,1);
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>else</span> <span style=font-weight:700;text-decoration:underline>if</span>(x==3)add(b,a,0);
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>else</span> <span style=font-weight:700;text-decoration:underline>if</span>(x==4)add(b,a,1);
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>else</span> <span style=font-weight:700;text-decoration:underline>if</span>(x==5)add(a,b,0);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=1;i&lt;=n;i++)add(0,i,1);
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>if</span>(!spfa())puts(<span style=color:#666;font-style:italic>&#34;-1&#34;</span>);
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>else</span>{
+</span></span><span style=display:flex><span>        ll res=0;
+</span></span><span style=display:flex><span>        <span style=font-weight:700;text-decoration:underline>for</span>(<span style=font-weight:700;text-decoration:underline>int</span> i=1;i&lt;=n;i++)res+=dis[i];
+</span></span><span style=display:flex><span>        cout&lt;&lt;res&lt;&lt;endl;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=font-weight:700;text-decoration:underline>return</span> 0;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=总结>总结</h2><p>最短路算法本身没什么东西，顶多改变建图的方法，边的类型（比如路径从加变为乘，这种时候可以全部取log变乘为加）等等。但可以与矩阵转置、矩阵快速幂连用，这就比较麻烦了。</p></div><div class=single-pagination><hr><div class=flex><div class=single-pagination-prev><div class=single-pagination-container-prev><div class=single-pagination-text>←</div><div class=single-pagination-text><a href=/posts/codeforces-1753b/>Codeforces 1753B</a></div></div></div><div class=single-pagination-next><div class=single-pagination-container-next><div class=single-pagination-text><a href=/posts/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%8F%8A%E5%85%B6%E6%89%A9%E5%B1%95/>线段树及其扩展</a></div><div class=single-pagination-text>→</div></div></div></div><hr></div><div class=back-to-top><a href=#top>back to top</a></div><script src=https://giscus.app/client.js data-repo=amcones/amcones.github.io data-repo-id=R_kgDONNHtbw data-category data-category-id=DIC_kwDONNHtb84CkJ6n data-mapping=title data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=top data-theme=preferred_color_scheme data-lang=en data-loading=lazy crossorigin=anonymous async></script></div></main></div><footer><p style=text-align:center>powered by <a href=https://gohugo.io/>hugo</a> & <a href=https://github.com/tomfran/typo>typo</a> theme<br><a href=https://creativecommons.org/licenses/by-nc/4.0/deed.en>CC-BY-NC 4.0</a>｜2019 - 2024 ©<a href=https://github.com/amcones>amcones</a> All rights reserved.｜<a href=https://beian.miit.gov.cn/#/Integrated/index>沪icp备20007771号-2</a></p><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js onload=renderMathInElement(document.body)></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}]})})</script></footer></body><script>function isAuto(){return document.body.classList.contains("auto")}function setTheme(){if(!isAuto())return;document.body.classList.remove("auto");let e="light";window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches&&(e="dark"),document.body.classList.add(e)}function invertBody(){document.body.classList.toggle("dark"),document.body.classList.toggle("light")}isAuto()&&window.matchMedia("(prefers-color-scheme: dark)").addListener(invertBody),setTheme()</script></html>
